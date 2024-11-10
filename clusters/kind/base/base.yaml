@@ -6,3 +6,16 @@ metadata:
     pod-security.kubernetes.io/warn: restricted
     pod-security.kubernetes.io/warn-version: latest
   name: kong-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: app
+  namespace: kong
+spec:
+  interval: 1m0s
+  path: ./app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
