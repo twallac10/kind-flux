@@ -23,3 +23,29 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: badnetshoot
+spec:
+  selector:
+    matchLabels:
+      app: badnetshoot
+  template:
+    metadata:
+      labels:
+        app: badnetshoot
+    spec:
+      containers:
+      - name: netshoot
+        image: nicolaka/netshoot
+        args:
+        - sleep
+        - infinity
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
