@@ -24,6 +24,18 @@ spec:
         ports:
         - containerPort: 80
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netshoot
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: netshoot
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -49,3 +61,14 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: badnetshoot
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: badnetshoot
