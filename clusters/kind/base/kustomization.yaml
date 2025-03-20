@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - base.yaml
 - kong.yaml
-- namespace.yaml
+- kong-config.yaml
