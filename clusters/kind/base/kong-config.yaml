@@ -14,15 +14,15 @@ metadata:
 spec:
   mtls:
     backends:
-      - conf: 
+      - name: ca-1
+        type: builtin
+        dpCert:
+          rotation:
+            expiration: 1d
+        conf:
           caCert:
             RSAbits: 2048
             expiration: 10y
-          dpCert:
-            rotation:
-              expiration: 1d
-          name: ca-1
-          type: builtin
     enabledBackend: ca-1
   networking:
     outbound:
