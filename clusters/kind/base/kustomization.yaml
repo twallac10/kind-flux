@@ -4,3 +4,5 @@ resources:
 - base.yaml
 - kong.yaml
 - kong-config.yaml
+patchs:
+- patch-delete.yaml

@@ -1,10 +1,6 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  labels:
-    test.cluster.local/label: test
-    pod-security.kubernetes.io/warn: restricted
-    pod-security.kubernetes.io/warn-version: latest
   name: kong-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
