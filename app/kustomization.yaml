@@ -4,4 +4,3 @@ namespace: httpbin
 resources:
 - httpbin.yaml
 - netshoot.yaml
-- sa.yaml
