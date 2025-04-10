@@ -6,4 +6,3 @@ resources:
 - kong-config.yaml
 # patches:
 #   - patch-delete.yaml
-prune: true
