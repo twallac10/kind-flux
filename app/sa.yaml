@@ -8,11 +8,11 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: example1
-# ---
-# apiVersion: v1
-# kind: ServiceAccount
-# metadata:
-#   name: example2
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: example2
 ---
 apiVersion: v1
 kind: ServiceAccount
