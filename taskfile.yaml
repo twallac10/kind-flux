@@ -1,0 +1,29 @@
+version: '3'
+vars:
+  KIND_CLUSTER_NAME: flux
+tasks:
+  build_cluster:
+    desc: Build the Kind cluster
+    cmds:
+      - kind create cluster --name {{.KIND_CLUSTER_NAME}} --config kind-config.yaml
+  
+  install_flux:
+    desc: Install Flux
+    vars:
+      GITHUB_USERNAME: $(gh api user | jq -r .login)
+      GITHUB_TOKEN: $(gh auth token)
+    cmds:
+      - helmfile apply
+      # Check if secret exists, if not create it
+      - |
+        if ! kubectl get secret flux-git-repo -n flux-system; then
+          echo "Creating secret flux-git-repo"
+          kubectl create secret generic flux-git-repo --from-literal=username={{.GITHUB_USERNAME}} --from-literal=password={{.GITHUB_TOKEN}} -n flux-system
+        else
+          echo "Secret flux-git-repo already exists"
+        fi
+  
+  delete_cluster:
+    desc: Delete the Kind cluster
+    cmds:
+      - kind delete cluster --name {{.KIND_CLUSTER_NAME}}
