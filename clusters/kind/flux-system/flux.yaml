@@ -24,8 +24,6 @@ spec:
         name: flux-system
         namespace: flux-system
   values:
-    multitenancy:
-      enabled: true
     imageAutomationController:
       create: false
     imageReflectionController:
