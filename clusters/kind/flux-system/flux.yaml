@@ -17,7 +17,7 @@ spec:
   releaseName: flux-system
   chart:
     spec:
-      chart: fluxcd-community/flux2
+      chart: flux2
       version: 2.15.0
       sourceRef:
         kind: HelmRepository
