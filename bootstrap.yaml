@@ -23,4 +23,3 @@ spec:
     name: flux-system
   prune: false
   path: ./clusters/kind/flux-system
-  serviceAccountName: flux-system
