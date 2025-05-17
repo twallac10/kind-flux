@@ -23,6 +23,12 @@ tasks:
           echo "Secret flux-git-repo already exists"
         fi
   
+  build:
+    desc: Build the cluster and install Flux
+    cmds:
+      - task: build_cluster
+      - task: install_flux
+
   delete_cluster:
     desc: Delete the Kind cluster
     cmds:

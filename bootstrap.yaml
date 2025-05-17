@@ -35,4 +35,20 @@ spec:
     kind: GitRepository
     name: flux-system
   prune: false
-  path: ./clusters/kind
+  path: ./clusters/kind/base
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: base
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  prune: false
+  path: ./clusters/kind/config
+  dependsOn:
+    - name: base
+      namespace: flux-system
