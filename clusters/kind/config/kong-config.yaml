@@ -42,4 +42,4 @@ spec:
   initPatch:
     - op: add
       path: /securityContext/runAsNonRoot
-      value: true
+      value: "true"
