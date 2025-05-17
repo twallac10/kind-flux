@@ -3,8 +3,6 @@ kind: Kustomization
 resources:
 - base.yaml
 - kong.yaml
-- kong-config.yaml
-- kube-state-metrics.yaml
 sortOptions:
   order: fifo
 
