@@ -40,12 +40,34 @@ metadata:
   namespace: kuma-system
 spec:
   initPatch:
-    # - op: add
-    #   path: /securityContext/capabilities/add
-    #   value: "NET_ADMIN"
-    # - op: add
-    #   path: /securityContext/capabilities/add
-    #   value: "NET_RAW"
     - op: add
       path: /securityContext/runAsNonRoot
       value: "false"
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshMetric
+metadata:
+  name: metrics-default
+  labels:
+    kuma.io/mesh: demo
+spec:
+  taragetRef:
+    kind: Dataplane
+    labels:
+      app.kubernetes.io/name: kube-state-metrics
+  default:
+    sidecar:
+      includeUnused: true
+      profiles:
+        appendProfiles:
+        - name: Basic
+    backends:
+    - type: Prometheus
+      prometheus:
+        port: 5670
+        path: "/metrics"
+    applications:
+    - name: kube-state-metrics
+      path: /metrics
+      port: 8080
+      
