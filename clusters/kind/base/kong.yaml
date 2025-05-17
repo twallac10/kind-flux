@@ -26,7 +26,7 @@ spec:
   values:
     controlPlane:
       envVars:
-        KUMA_RUNTIME_KUBERNETES_INJECTOR_CONTAINER_PATCHES: "patch1"
+        KUMA_RUNTIME_KUBERNETES_INJECTOR_CONTAINER_PATCHES: "container-patch-1"
     ingress:
       enabled: true
     egress:
