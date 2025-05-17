@@ -31,14 +31,3 @@ spec:
       enabled: true
     egress:
       enabled: true
----
-apiVersion: kuma.io/v1alpha1
-kind: ContainerPatch
-metadata:
-  name: container-patch-1
-  namespace: kuma-system
-spec:
-  initPatch:
-    - op: add
-      path: /securityContext/runAsNonRoot
-      value: true
