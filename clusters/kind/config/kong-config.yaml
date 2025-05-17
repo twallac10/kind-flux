@@ -52,7 +52,7 @@ metadata:
   labels:
     kuma.io/mesh: demo
 spec:
-  taragetRef:
+  targetRef:
     kind: Dataplane
     labels:
       app.kubernetes.io/name: kube-state-metrics
