@@ -40,12 +40,12 @@ metadata:
   namespace: kuma-system
 spec:
   initPatch:
-    - op: add
-      path: /securityContext/capabilities/add
-      value: "NET_ADMIN"
-    - op: add
-      path: /securityContext/capabilities/add
-      value: "NET_RAW"
+    # - op: add
+    #   path: /securityContext/capabilities/add
+    #   value: "NET_ADMIN"
+    # - op: add
+    #   path: /securityContext/capabilities/add
+    #   value: "NET_RAW"
     - op: add
       path: /securityContext/runAsNonRoot
       value: "true"
