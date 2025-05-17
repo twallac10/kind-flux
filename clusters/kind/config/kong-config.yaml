@@ -41,8 +41,7 @@ metadata:
 spec:
   initPatch:
     - op: add
-      path: /securityContext/capabilities
+      path: /securityContext/capabilities/add
       value:
-        add:
           - NET_ADMIN
           - NET_RAW
