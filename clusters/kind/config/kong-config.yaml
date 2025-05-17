@@ -48,6 +48,7 @@ apiVersion: kuma.io/v1alpha1
 kind: MeshMetric
 metadata:
   name: metrics-default
+  namespace: kuma-system
   labels:
     kuma.io/mesh: demo
 spec:
