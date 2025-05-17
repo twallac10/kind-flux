@@ -41,5 +41,8 @@ metadata:
 spec:
   initPatch:
     - op: add
-      path: /securityContext/runAsNonRoot
-      value: "true"
+      path: /securityContext/capabilities
+      value:
+        add:
+          - NET_ADMIN
+          - NET_RAW
