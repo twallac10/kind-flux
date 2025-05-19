@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - base.yaml
 - kong.yaml
+- keyverno.yaml
 sortOptions:
   order: fifo
 
