@@ -32,7 +32,10 @@ spec:
         name: kube-state-metrics
   releaseName: kube-state-metrics
   targetNamespace: observability
-  values: {}
+  valuesFrom:
+  - kind: ConfigMap
+    name: flux-kube-state-metrics-config
+    valuesKey: kube-state-metrics-config.yaml
 ---
 apiVersion: kuma.io/v1alpha1
 kind: MeshMetric
