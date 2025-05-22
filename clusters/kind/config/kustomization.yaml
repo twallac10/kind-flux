@@ -6,7 +6,7 @@ resources:
 - kong-config.yaml
 - kube-state-metrics.yaml
 configMapGenerator:
-  - name: flux-kube-state-metrics-config
+  - name: kube-state-metrics-config
     namespace: observability
     files:
       - kube-state-metrics-config.yaml
