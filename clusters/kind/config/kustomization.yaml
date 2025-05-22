@@ -13,4 +13,5 @@ configMapGenerator:
         app.kubernetes.io/component: monitoring
 sortOptions:
   order: fifo
+namespace: observability
 
