@@ -4,8 +4,6 @@ metadata:
   name: observability
   labels:
     name: observability
-    kuma.io/mesh: demo
-    kuma.io/sidecar-injection: enabled
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
