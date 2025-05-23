@@ -35,13 +35,12 @@ customResourceState:
             kind: Kustomization
           metricNamePrefix: gotk
           metrics:
-            - name: "resource_info"
+            - name: "kustomization_ready"
               help: "The current state of a Flux Kustomization resource."
               each:
-                type: Info
-                info:
-                  labelsFromPath:
-                    name: [ metadata, name ]
+                type: Gauge
+                gauge:
+                  path: [ status, conditions, "[type=Ready]", status ]
               labelsFromPath:
                 exported_namespace: [ metadata, namespace ]
                 ready: [ status, conditions, "[type=Ready]", status ]
