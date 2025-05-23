@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: httpbin
   labels:
-    kuma.io/sidecar-injection: enabled
+    kuma.io/sidecar-injection: disabled
   annotations:
     kuma.io/mesh: demo
 ---
