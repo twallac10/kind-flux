@@ -52,3 +52,19 @@ spec:
   dependsOn:
     - name: base
       namespace: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: config
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  prune: false
+  path: ./app
+  dependsOn:
+    - name: config
+      namespace: flux-system
