@@ -5,4 +5,4 @@ resources:
 - httpbin.yaml
 - netshoot.yaml
 - sa.yaml
-- tunnel.yaml
+# - tunnel.yaml
