@@ -88,8 +88,8 @@ metadata:
     kuma.io/mesh: demo
 spec:
   targetRef:
-    kind: MeshSubset
-    tags:
+    kind: Dataplane
+    labels:
       kuma.io/service: httpbin
   from:
   - targetRef:
