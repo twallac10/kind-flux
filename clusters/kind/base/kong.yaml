@@ -26,9 +26,11 @@ spec:
   targetNamespace: kuma-system
   values:
     controlPlane:
+      logLevel: debug
       envVars:
         KUMA_RUNTIME_KUBERNETES_INJECTOR_CONTAINER_PATCHES: "container-patch-1"
     ingress:
       enabled: true
     egress:
+      logLevel: debug
       enabled: true
