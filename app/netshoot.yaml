@@ -10,7 +10,6 @@ spec:
     metadata:
       labels:
         app: netshoot
-        kuma.io/sidecar-injection: disabled
     spec:
       containers:
       - name: netshoot
