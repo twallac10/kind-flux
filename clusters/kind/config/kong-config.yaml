@@ -4,6 +4,8 @@ metadata:
   name: httpbin
   annotations:
     kuma.io/mesh: demo
+  labels:
+    kuma.io/sidecar-injection: enabled
 ---
 apiVersion: kuma.io/v1alpha1
 kind: Mesh
