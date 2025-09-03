@@ -101,11 +101,10 @@ spec:
 ---
 apiVersion: kuma.io/v1alpha1
 kind: ExternalService
+mesh: demo
 metadata:
-  name: httpbin-only-in-zone-2
+  name: httpbin
   namespace: kuma-system
-  labels:
-    kuma.io/mesh: demo
 spec:
   tags:
     kuma.io/service: httpbin
