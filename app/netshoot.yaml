@@ -88,7 +88,7 @@ metadata:
     kuma.io/mesh: demo
 spec:
   targetRef:
-    kind: Dataplane
+    kind: ExternalService
     labels:
       kuma.io/service: httpbin
   from:
