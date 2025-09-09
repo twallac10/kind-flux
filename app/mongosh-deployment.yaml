@@ -22,13 +22,43 @@ spec:
         args: 
         - "-c"
         - |
-          echo "MongoDB container ready for interactive testing"
-          echo "To connect to Atlas, run:"
-          echo "mongosh mongodb+srv://testcluster.yzcupsf.mongodb.net --username twallace"
-          echo "or"
-          echo "mongosh 'mongodb+srv://twallace:PASSWORD@testcluster.yzcupsf.mongodb.net'"
+          echo "=== MongoDB Atlas Connection Test ==="
+          echo "Container is outside the service mesh (label: kuma.io/sidecar-injection: disabled)"
           echo ""
-          echo "Container will stay alive indefinitely for exec access..."
+          
+          echo "Testing MongoDB Atlas connection..."
+          echo "Method 1: Standard connection with embedded credentials"
+          mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net" \
+            --eval "
+              console.log('✅ Connected to MongoDB Atlas!');
+              console.log('Database:', db.getName());
+              console.log('Server Info:', db.serverStatus().host);
+              console.log('MongoDB Version:', db.version());
+              console.log('Available databases:');
+              db.adminCommand('listDatabases').databases.forEach(db => console.log('  -', db.name));
+              console.log('✅ Connection test completed successfully!');
+            " && echo "✅ MongoDB connection successful!" || {
+              echo "❌ Standard connection failed, trying alternative methods..."
+              
+              echo "Method 2: Separate username/password"
+              mongosh "mongodb+srv://testcluster.yzcupsf.mongodb.net" \
+                --username twallace \
+                --password 3S3t9HuzaOmzFgCx \
+                --eval "console.log('✅ Connected with separate credentials!');" || echo "❌ Alternative method failed"
+              
+              echo "Method 3: Extended timeouts"
+              mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net/?connectTimeoutMS=30000&socketTimeoutMS=30000" \
+                --eval "console.log('✅ Connected with extended timeouts!');" || echo "❌ Timeout method failed"
+            }
+          
+          echo ""
+          echo "=== Interactive Mode ==="
+          echo "Container ready for kubectl exec access"
+          echo "Commands to try:"
+          echo "  kubectl exec -it deployment/mongosh -n httpbin -- bash"
+          echo "  mongosh 'mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net'"
+          echo ""
+          echo "Container staying alive..."
           while true; do sleep 3600; done
         resources:
           requests:
