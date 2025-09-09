@@ -24,7 +24,14 @@ spec:
           echo "=== MongoDB Atlas Connection Diagnostics ==="
           echo "Pod IP: $(hostname -i)"
           echo "Testing DNS resolution..."
-          nslookup testcluster.yzcupsf.mongodb.net || echo "DNS resolution failed"
+          echo "A record lookup:"
+          nslookup testcluster.yzcupsf.mongodb.net || echo "A record DNS resolution failed"
+          
+          echo "SRV record lookup (required for mongodb+srv://):"
+          nslookup -type=SRV _mongodb._tcp.testcluster.yzcupsf.mongodb.net || echo "SRV record DNS resolution failed"
+          
+          echo "TXT record lookup (for connection options):"
+          nslookup -type=TXT testcluster.yzcupsf.mongodb.net || echo "TXT record DNS resolution failed"
           
           echo "Testing network connectivity..."
           nc -zv testcluster.yzcupsf.mongodb.net 27017 || echo "Network connection failed"
