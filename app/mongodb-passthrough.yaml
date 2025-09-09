@@ -1,0 +1,19 @@
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: mongodb-passthrough
+  namespace: httpbin
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: Dataplane
+    labels:
+      app: mongosh
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "*.yzcupsf.mongodb.net"
+      protocol: tls
+      port: 27017
