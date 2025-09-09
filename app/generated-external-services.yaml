@@ -1,0 +1,323 @@
+# Additional Generated Kong Mesh External Services
+# Generated via script for testing and demonstration purposes
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-1
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-1
+    kuma.io/protocol: http
+  networking:
+    address: test-api-1.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-2
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-2
+    kuma.io/protocol: http
+  networking:
+    address: test-api-2.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-3
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-3
+    kuma.io/protocol: http
+  networking:
+    address: test-api-3.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-4
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-4
+    kuma.io/protocol: http
+  networking:
+    address: test-api-4.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-5
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-5
+    kuma.io/protocol: http
+  networking:
+    address: test-api-5.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-6
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-6
+    kuma.io/protocol: http
+  networking:
+    address: test-db-1.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-7
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-7
+    kuma.io/protocol: http
+  networking:
+    address: test-db-2.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-8
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-8
+    kuma.io/protocol: http
+  networking:
+    address: test-db-3.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-9
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-9
+    kuma.io/protocol: http
+  networking:
+    address: test-cache-1.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: test-service-10
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: test-service-10
+    kuma.io/protocol: http
+  networking:
+    address: test-cache-2.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-1
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-1
+    kuma.io/protocol: http
+  networking:
+    address: mock-payment.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-2
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-2
+    kuma.io/protocol: http
+  networking:
+    address: mock-user.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-3
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-3
+    kuma.io/protocol: http
+  networking:
+    address: mock-inventory.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-4
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-4
+    kuma.io/protocol: http
+  networking:
+    address: mock-notification.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-5
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-5
+    kuma.io/protocol: http
+  networking:
+    address: mock-analytics.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-6
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-6
+    kuma.io/protocol: http
+  networking:
+    address: mock-search.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-7
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-7
+    kuma.io/protocol: http
+  networking:
+    address: mock-recommendation.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-8
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-8
+    kuma.io/protocol: http
+  networking:
+    address: mock-catalog.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-9
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-9
+    kuma.io/protocol: http
+  networking:
+    address: mock-order.example.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mock-service-10
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mock-service-10
+    kuma.io/protocol: http
+  networking:
+    address: mock-shipping.example.com:443
+    tls:
+      enabled: true
+

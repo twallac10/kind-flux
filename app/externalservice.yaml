@@ -1,0 +1,1650 @@
+# Kong Mesh External Services - Generated via Kustomize
+# This file contains 100 external services for various common services and endpoints
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: httpbin-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: httpbin-external
+    kuma.io/protocol: http
+  networking:
+    address: httpbin.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: jsonplaceholder-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: jsonplaceholder-external
+    kuma.io/protocol: http
+  networking:
+    address: jsonplaceholder.typicode.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: github-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: github-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.github.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: google-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: google-external
+    kuma.io/protocol: http
+  networking:
+    address: www.google.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: stackoverflow-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: stackoverflow-external
+    kuma.io/protocol: http
+  networking:
+    address: stackoverflow.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: reddit-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: reddit-api-external
+    kuma.io/protocol: http
+  networking:
+    address: www.reddit.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: docker-hub-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: docker-hub-external
+    kuma.io/protocol: http
+  networking:
+    address: hub.docker.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: npm-registry-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: npm-registry-external
+    kuma.io/protocol: http
+  networking:
+    address: registry.npmjs.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: pypi-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: pypi-external
+    kuma.io/protocol: http
+  networking:
+    address: pypi.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: kubernetes-io-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: kubernetes-io-external
+    kuma.io/protocol: http
+  networking:
+    address: kubernetes.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: aws-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: aws-api-external
+    kuma.io/protocol: http
+  networking:
+    address: aws.amazon.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: azure-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: azure-api-external
+    kuma.io/protocol: http
+  networking:
+    address: portal.azure.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: gcp-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: gcp-api-external
+    kuma.io/protocol: http
+  networking:
+    address: cloud.google.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: terraform-registry-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: terraform-registry-external
+    kuma.io/protocol: http
+  networking:
+    address: registry.terraform.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: helm-charts-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: helm-charts-external
+    kuma.io/protocol: http
+  networking:
+    address: charts.helm.sh:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: prometheus-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: prometheus-external
+    kuma.io/protocol: http
+  networking:
+    address: prometheus.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: grafana-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: grafana-external
+    kuma.io/protocol: http
+  networking:
+    address: grafana.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: jaeger-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: jaeger-external
+    kuma.io/protocol: http
+  networking:
+    address: jaegertracing.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: elastic-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: elastic-external
+    kuma.io/protocol: http
+  networking:
+    address: elastic.co:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mongodb-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mongodb-external
+    kuma.io/protocol: tcp
+  networking:
+    address: mongodb.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: redis-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: redis-external
+    kuma.io/protocol: tcp
+  networking:
+    address: redis.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: postgresql-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: postgresql-external
+    kuma.io/protocol: tcp
+  networking:
+    address: postgresql.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mysql-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mysql-external
+    kuma.io/protocol: tcp
+  networking:
+    address: mysql.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: cassandra-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: cassandra-external
+    kuma.io/protocol: tcp
+  networking:
+    address: cassandra.apache.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: kafka-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: kafka-external
+    kuma.io/protocol: kafka
+  networking:
+    address: kafka.apache.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: rabbitmq-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: rabbitmq-external
+    kuma.io/protocol: tcp
+  networking:
+    address: rabbitmq.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: jenkins-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: jenkins-external
+    kuma.io/protocol: http
+  networking:
+    address: jenkins.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: gitlab-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: gitlab-external
+    kuma.io/protocol: http
+  networking:
+    address: gitlab.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: bitbucket-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: bitbucket-external
+    kuma.io/protocol: http
+  networking:
+    address: bitbucket.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: confluence-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: confluence-external
+    kuma.io/protocol: http
+  networking:
+    address: confluence.atlassian.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: jira-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: jira-external
+    kuma.io/protocol: http
+  networking:
+    address: jira.atlassian.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: slack-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: slack-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.slack.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: discord-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: discord-api-external
+    kuma.io/protocol: http
+  networking:
+    address: discord.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: teams-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: teams-api-external
+    kuma.io/protocol: http
+  networking:
+    address: teams.microsoft.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: zoom-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: zoom-api-external
+    kuma.io/protocol: http
+  networking:
+    address: zoom.us:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: notion-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: notion-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.notion.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: trello-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: trello-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.trello.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: asana-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: asana-api-external
+    kuma.io/protocol: http
+  networking:
+    address: app.asana.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: monday-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: monday-api-external
+    kuma.io/protocol: http
+  networking:
+    address: monday.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: spotify-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: spotify-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.spotify.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: youtube-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: youtube-api-external
+    kuma.io/protocol: http
+  networking:
+    address: www.googleapis.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: twitter-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: twitter-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.twitter.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: facebook-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: facebook-api-external
+    kuma.io/protocol: http
+  networking:
+    address: graph.facebook.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: instagram-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: instagram-api-external
+    kuma.io/protocol: http
+  networking:
+    address: graph.instagram.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: linkedin-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: linkedin-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.linkedin.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: stripe-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: stripe-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.stripe.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: paypal-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: paypal-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.paypal.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: square-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: square-api-external
+    kuma.io/protocol: http
+  networking:
+    address: connect.squareup.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: shopify-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: shopify-api-external
+    kuma.io/protocol: http
+  networking:
+    address: shopify.dev:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: woocommerce-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: woocommerce-api-external
+    kuma.io/protocol: http
+  networking:
+    address: woocommerce.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: magento-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: magento-api-external
+    kuma.io/protocol: http
+  networking:
+    address: magento.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: salesforce-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: salesforce-api-external
+    kuma.io/protocol: http
+  networking:
+    address: salesforce.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: hubspot-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: hubspot-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.hubapi.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mailchimp-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mailchimp-api-external
+    kuma.io/protocol: http
+  networking:
+    address: mailchimp.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: sendgrid-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: sendgrid-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.sendgrid.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: twilio-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: twilio-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.twilio.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: nexmo-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: nexmo-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.nexmo.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: auth0-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: auth0-api-external
+    kuma.io/protocol: http
+  networking:
+    address: auth0.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: okta-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: okta-api-external
+    kuma.io/protocol: http
+  networking:
+    address: okta.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: firebase-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: firebase-api-external
+    kuma.io/protocol: http
+  networking:
+    address: firebase.googleapis.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: supabase-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: supabase-api-external
+    kuma.io/protocol: http
+  networking:
+    address: supabase.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: planetscale-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: planetscale-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.planetscale.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: heroku-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: heroku-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.heroku.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: vercel-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: vercel-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.vercel.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: netlify-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: netlify-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.netlify.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: cloudflare-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: cloudflare-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.cloudflare.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: fastly-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: fastly-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.fastly.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: datadog-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: datadog-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.datadoghq.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: newrelic-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: newrelic-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.newrelic.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: splunk-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: splunk-api-external
+    kuma.io/protocol: http
+  networking:
+    address: splunk.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: pagerduty-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: pagerduty-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.pagerduty.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: opsgenie-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: opsgenie-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.opsgenie.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: sentry-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: sentry-api-external
+    kuma.io/protocol: http
+  networking:
+    address: sentry.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: rollbar-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: rollbar-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.rollbar.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: bugsnag-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: bugsnag-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.bugsnag.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: honeybadger-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: honeybadger-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.honeybadger.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: circleci-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: circleci-api-external
+    kuma.io/protocol: http
+  networking:
+    address: circleci.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: travis-ci-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: travis-ci-external
+    kuma.io/protocol: http
+  networking:
+    address: api.travis-ci.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: github-actions-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: github-actions-external
+    kuma.io/protocol: http
+  networking:
+    address: github.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: gitlab-ci-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: gitlab-ci-external
+    kuma.io/protocol: http
+  networking:
+    address: gitlab.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: codeship-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: codeship-api-external
+    kuma.io/protocol: http
+  networking:
+    address: codeship.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: buildkite-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: buildkite-api-external
+    kuma.io/protocol: http
+  networking:
+    address: api.buildkite.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: semaphore-api-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: semaphore-api-external
+    kuma.io/protocol: http
+  networking:
+    address: semaphoreci.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: terraform-cloud-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: terraform-cloud-external
+    kuma.io/protocol: http
+  networking:
+    address: app.terraform.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: ansible-galaxy-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: ansible-galaxy-external
+    kuma.io/protocol: http
+  networking:
+    address: galaxy.ansible.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: puppet-forge-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: puppet-forge-external
+    kuma.io/protocol: http
+  networking:
+    address: forge.puppet.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: chef-supermarket-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: chef-supermarket-external
+    kuma.io/protocol: http
+  networking:
+    address: supermarket.chef.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: vagrant-cloud-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: vagrant-cloud-external
+    kuma.io/protocol: http
+  networking:
+    address: app.vagrantup.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: packer-registry-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: packer-registry-external
+    kuma.io/protocol: http
+  networking:
+    address: packer.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: consul-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: consul-external
+    kuma.io/protocol: http
+  networking:
+    address: consul.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: vault-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: vault-external
+    kuma.io/protocol: http
+  networking:
+    address: vaultproject.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: nomad-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: nomad-external
+    kuma.io/protocol: http
+  networking:
+    address: nomadproject.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: etcd-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: etcd-external
+    kuma.io/protocol: grpc
+  networking:
+    address: etcd.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: istio-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: istio-external
+    kuma.io/protocol: http
+  networking:
+    address: istio.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: linkerd-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: linkerd-external
+    kuma.io/protocol: http
+  networking:
+    address: linkerd.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: envoy-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: envoy-external
+    kuma.io/protocol: http
+  networking:
+    address: envoyproxy.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: traefik-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: traefik-external
+    kuma.io/protocol: http
+  networking:
+    address: traefik.io:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: nginx-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: nginx-external
+    kuma.io/protocol: http
+  networking:
+    address: nginx.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: apache-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: apache-external
+    kuma.io/protocol: http
+  networking:
+    address: apache.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: haproxy-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: haproxy-external
+    kuma.io/protocol: http
+  networking:
+    address: haproxy.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: caddy-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: caddy-external
+    kuma.io/protocol: http
+  networking:
+    address: caddyserver.com:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: certbot-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: certbot-external
+    kuma.io/protocol: http
+  networking:
+    address: certbot.eff.org:443
+    tls:
+      enabled: true
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: letsencrypt-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: letsencrypt-external
+    kuma.io/protocol: http
+  networking:
+    address: letsencrypt.org:443
+    tls:
+      enabled: true

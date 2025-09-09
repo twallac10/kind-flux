@@ -1,0 +1,42 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: httpbin
+
+resources:
+- httpbin.yaml
+- netshoot.yaml
+- sa.yaml
+- externalservice.yaml
+# - tunnel.yaml
+
+# Generate additional external services using replacements
+replacements:
+- source:
+    kind: ExternalService
+    name: httpbin-external
+    fieldPath: spec.networking.address
+  targets:
+  - select:
+      kind: ExternalService
+      name: test-service-*
+    fieldPaths:
+    - spec.networking.address
+
+# Generate test services using configMapGenerator approach
+configMapGenerator:
+- name: external-service-config
+  literals:
+  - services.txt=|
+    test-service-1.example.com
+    test-service-2.example.com
+    test-service-3.example.com
+    test-service-4.example.com
+    test-service-5.example.com
+    test-service-6.example.com
+    test-service-7.example.com
+    test-service-8.example.com
+    test-service-9.example.com
+    test-service-10.example.com
+
+generatorOptions:
+  disableNameSuffixHash: true

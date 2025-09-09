@@ -5,4 +5,6 @@ resources:
 - httpbin.yaml
 - netshoot.yaml
 - sa.yaml
+- externalservice.yaml
+- generated-external-services.yaml
 # - tunnel.yaml

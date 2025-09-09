@@ -1,0 +1,14 @@
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: external-service-base
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: external-service-base
+    kuma.io/protocol: http
+  networking:
+    address: example.com:443
+    tls:
+      enabled: true
