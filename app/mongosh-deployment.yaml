@@ -19,11 +19,18 @@ spec:
       - name: mongosh
         image: mongo:7.0
         imagePullPolicy: IfNotPresent
-        command: ["mongosh"]
+        command: ["/bin/bash"]
         args: 
-        - "mongodb+srv://testcluster.yzcupsf.mongodb.net"
-        - "--eval"
-        - "console.log('Connected to MongoDB Atlas!'); db.adminCommand('ping'); console.log('Database:', db.getName());"
+        - "-c"
+        - |
+          echo "MongoDB container ready for interactive testing"
+          echo "To connect to Atlas, run:"
+          echo "mongosh mongodb+srv://testcluster.yzcupsf.mongodb.net --username twallace"
+          echo "or"
+          echo "mongosh 'mongodb+srv://twallace:PASSWORD@testcluster.yzcupsf.mongodb.net'"
+          echo ""
+          echo "Container will stay alive indefinitely for exec access..."
+          while true; do sleep 3600; done
         resources:
           requests:
             memory: "128Mi"
