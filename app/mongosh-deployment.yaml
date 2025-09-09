@@ -17,148 +17,17 @@ spec:
     spec:
       containers:
       - name: mongosh
-        image: rtsp/mongosh:latest
+        image: mongo:7.0
         imagePullPolicy: IfNotPresent
-        command: ["/bin/sh"]
+        command: ["mongosh"]
         args: 
-        - "-c"
-        - |
-          echo "=== MongoDB Atlas Connection Diagnostics ==="
-          echo "Image: rtsp/mongosh (Debian-based)"
-          echo "Pod IP: $(hostname -i)"
-          echo "Pod hostname: $(hostname)"
-          echo "Environment check:"
-          echo "- User: $(whoami)"
-          echo "- Shell: $SHELL"
-          echo "- Working directory: $(pwd)"
-          echo "- OS Info: $(cat /etc/os-release | grep PRETTY_NAME || echo 'Unknown OS')"
-          echo "- Available tools:"
-          echo "  - mongosh: $(which mongosh 2>/dev/null || echo 'not found')"
-          echo "  - nc/netcat: $(which nc 2>/dev/null || echo 'not found')"
-          echo "  - dig: $(which dig 2>/dev/null || echo 'not found')"
-          echo "  - nslookup: $(which nslookup 2>/dev/null || echo 'not found')"
-          echo "- DNS servers:"
-          cat /etc/resolv.conf | grep nameserver || echo "Could not read DNS config"
-          
-          # Check for any proxy or network environment variables
-          echo "- Network environment variables:"
-          env | grep -i proxy || echo "No proxy variables set"
-          env | grep -i dns || echo "No DNS variables set"
-          
-          # Install required tools if missing (Debian-based system)
-          if ! command -v nc >/dev/null 2>&1; then
-            echo "Installing netcat..."
-            apt-get update >/dev/null 2>&1 && apt-get install -y netcat-openbsd >/dev/null 2>&1 || echo "Failed to install netcat"
-          fi
-          
-          echo "Testing DNS resolution..."
-          echo "A record lookup:"
-          nslookup testcluster.yzcupsf.mongodb.net || echo "A record DNS resolution failed"
-          
-          echo "SRV record lookup (required for mongodb+srv://):"
-          SRV_RESULT=$(nslookup -type=SRV _mongodb._tcp.testcluster.yzcupsf.mongodb.net 2>/dev/null)
-          
-          if echo "$SRV_RESULT" | grep -q "service ="; then
-            echo "$SRV_RESULT"
-            echo "Extracting MongoDB endpoints from SRV records..."
-            
-            # More robust parsing - handle different nslookup formats
-            ENDPOINTS=$(echo "$SRV_RESULT" | grep "service =" | while read line; do
-              # Extract host and port from different possible formats
-              if echo "$line" | grep -q "service ="; then
-                # Format: service = priority weight port target
-                port=$(echo "$line" | awk '{print $(NF-1)}')
-                host=$(echo "$line" | awk '{print $NF}' | sed 's/\.$//')
-                if [ ! -z "$host" ] && [ ! -z "$port" ]; then
-                  echo "$host:$port"
-                fi
-              fi
-            done)
-            
-            if [ ! -z "$ENDPOINTS" ]; then
-              echo "Found endpoints:"
-              echo "$ENDPOINTS"
-              
-              echo "Testing network connectivity to actual MongoDB endpoints..."
-              echo "$ENDPOINTS" | while read endpoint; do
-                if [ ! -z "$endpoint" ]; then
-                  host=$(echo $endpoint | cut -d: -f1)
-                  port=$(echo $endpoint | cut -d: -f2)
-                  echo "Testing $host:$port..."
-                  if command -v nc >/dev/null 2>&1; then
-                    nc -zv $host $port 2>&1 || echo "Connection to $endpoint failed"
-                  else
-                    echo "netcat not available, skipping connectivity test"
-                  fi
-                fi
-              done
-            else
-              echo "No valid endpoints extracted from SRV records"
-            fi
-          else
-            echo "SRV record DNS resolution failed or no service records found"
-          fi
-          
-          echo "TXT record lookup (for connection options):"
-          nslookup -type=TXT testcluster.yzcupsf.mongodb.net || echo "TXT record DNS resolution failed"
-          
-          echo "Attempting MongoDB connection with detailed error info..."
-          echo "Method 1: Standard mongodb+srv connection..."
-          mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net" \
-            --quiet \
-            --eval "
-              console.log('✓ Connected to MongoDB Atlas!');
-              console.log('Database list:');
-              db.adminCommand('listDatabases').databases.forEach(db => console.log('- ' + db.name));
-              console.log('Current database:', db.getName());
-              console.log('MongoDB version:', db.version());
-              console.log('✓ Connection test completed successfully!');
-            " || {
-              echo "❌ Standard mongodb+srv connection failed"
-              
-              echo "Method 2: Alternative format with explicit username..."
-              mongosh "mongodb+srv://testcluster.yzcupsf.mongodb.net" \
-                --username twallace \
-                --password 3S3t9HuzaOmzFgCx \
-                --eval "console.log('Connected with separate credentials!')" || echo "Alternative format failed"
-              
-              echo "Method 3: With explicit authSource..."
-              mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net/?authSource=admin" \
-                --eval "console.log('Connected with authSource!')" || echo "authSource method failed"
-              
-              echo "Method 4: With retryWrites and w=majority..."
-              mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net/?retryWrites=true&w=majority" \
-                --eval "console.log('Connected with retry options!')" || echo "Retry options failed"
-              
-              echo "Method 5: With explicit TLS settings..."
-              mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net" \
-                --tls \
-                --tlsAllowInvalidCertificates \
-                --eval "console.log('Connected with relaxed TLS!')" || echo "Relaxed TLS failed"
-              
-              echo "Method 6: With connection timeout..."
-              mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net/?connectTimeoutMS=30000&socketTimeoutMS=30000" \
-                --eval "console.log('Connected with timeouts!')" || echo "Timeout method failed"
-              
-              echo "Method 7: Testing direct endpoint connection (if SRV resolved)..."
-              if [ ! -z "$ENDPOINTS" ]; then
-                FIRST_ENDPOINT=$(echo "$ENDPOINTS" | head -1)
-                if [ ! -z "$FIRST_ENDPOINT" ]; then
-                  host=$(echo $FIRST_ENDPOINT | cut -d: -f1)
-                  echo "Trying direct connection to $host..."
-                  mongosh "mongodb://twallace:3S3t9HuzaOmzFgCx@$host:27017/?tls=true&authSource=admin" \
-                    --eval "console.log('Connected directly to endpoint!')" || echo "Direct endpoint failed"
-                fi
-              fi
-            }
-          
-          echo "=== End Diagnostics ==="
-          echo "Keeping container alive for debugging..."
-          sleep 3600
+        - "mongodb+srv://testcluster.yzcupsf.mongodb.net"
+        - "--eval"
+        - "console.log('Connected to MongoDB Atlas!'); db.adminCommand('ping'); console.log('Database:', db.getName());"
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "50m"
-          limits:
             memory: "128Mi"
             cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
