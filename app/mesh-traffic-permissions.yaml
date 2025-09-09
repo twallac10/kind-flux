@@ -551,6 +551,69 @@ spec:
 apiVersion: kuma.io/v1alpha1
 kind: MeshTrafficPermission
 metadata:
+  name: allow-mongodb-shards-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: mongodb-shard-00-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        app: mongosh
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-mongodb-shards-01-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: mongodb-shard-01-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        app: mongosh
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-mongodb-shards-02-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: mongodb-shard-02-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        app: mongosh
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
   name: allow-redis-external
   namespace: kuma-system
   labels:

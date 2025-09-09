@@ -12,7 +12,6 @@ spec:
     metadata:
       labels:
         app: mongosh
-        kuma.io/sidecar-injection: disabled
     spec:
       containers:
       - name: mongosh
@@ -23,7 +22,7 @@ spec:
         - "-c"
         - |
           echo "=== MongoDB Atlas Connection Test ==="
-          echo "Container is outside the service mesh (label: kuma.io/sidecar-injection: disabled)"
+          echo "Container is ON the service mesh (testing mesh configuration)"
           echo ""
           
           echo "Testing MongoDB Atlas connection..."
