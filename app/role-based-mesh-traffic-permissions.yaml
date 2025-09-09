@@ -1,0 +1,6999 @@
+# Role-Based Kong Mesh Traffic Permissions
+# This file contains specialized MeshTrafficPermissions for different roles and use cases
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-to-gitlab-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gitlab-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-to-jenkins-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jenkins-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-to-docker-hub-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: docker-hub-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-to-npm-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: npm-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-to-pypi-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: pypi-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-to-terraform-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-to-gitlab-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gitlab-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-to-jenkins-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jenkins-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-to-docker-hub-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: docker-hub-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-to-npm-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: npm-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-to-pypi-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: pypi-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-to-terraform-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-to-gitlab-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gitlab-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-to-jenkins-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jenkins-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-to-docker-hub-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: docker-hub-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-to-npm-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: npm-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-to-pypi-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: pypi-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-to-terraform-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-to-gitlab-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gitlab-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-to-jenkins-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jenkins-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-to-docker-hub-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: docker-hub-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-to-npm-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: npm-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-to-pypi-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: pypi-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-to-terraform-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-to-gitlab-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gitlab-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-to-jenkins-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jenkins-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-to-docker-hub-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: docker-hub-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-to-npm-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: npm-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-to-pypi-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: pypi-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-to-terraform-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-to-gitlab-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gitlab-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-to-jenkins-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jenkins-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-to-docker-hub-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: docker-hub-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-to-npm-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: npm-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-to-pypi-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: pypi-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-to-terraform-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-development-to-httpbin-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: httpbin-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-development-to-jsonplaceholder-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jsonplaceholder-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-development-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-development-to-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-development-to-jira-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jira-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-testing-to-httpbin-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: httpbin-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-testing-to-jsonplaceholder-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jsonplaceholder-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-testing-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-testing-to-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-testing-to-jira-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jira-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-staging-to-httpbin-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: httpbin-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-staging-to-jsonplaceholder-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jsonplaceholder-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-staging-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-staging-to-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-staging-to-jira-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jira-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-production-to-httpbin-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: httpbin-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-production-to-jsonplaceholder-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jsonplaceholder-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-production-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-production-to-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-production-to-jira-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jira-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-sandbox-to-httpbin-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: httpbin-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-sandbox-to-jsonplaceholder-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jsonplaceholder-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-sandbox-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-sandbox-to-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-sandbox-to-jira-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jira-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-demo-to-httpbin-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: httpbin-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-demo-to-jsonplaceholder-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jsonplaceholder-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-demo-to-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-demo-to-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-demo-to-jira-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jira-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-aws-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: aws-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-azure-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: azure-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-gcp-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gcp-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-terraform-cloud-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-cloud-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-ansible-galaxy-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: ansible-galaxy-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-prometheus-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: prometheus-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-grafana-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: grafana-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-to-datadog-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: datadog-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-aws-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: aws-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-azure-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: azure-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-gcp-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gcp-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-terraform-cloud-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-cloud-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-ansible-galaxy-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: ansible-galaxy-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-prometheus-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: prometheus-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-grafana-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: grafana-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-to-datadog-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: datadog-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-aws-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: aws-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-azure-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: azure-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-gcp-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gcp-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-terraform-cloud-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-cloud-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-ansible-galaxy-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: ansible-galaxy-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-prometheus-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: prometheus-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-grafana-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: grafana-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-to-datadog-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: datadog-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-aws-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: aws-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-azure-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: azure-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-gcp-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gcp-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-terraform-cloud-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-cloud-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-ansible-galaxy-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: ansible-galaxy-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-prometheus-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: prometheus-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-grafana-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: grafana-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-to-datadog-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: datadog-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-aws-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: aws-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-azure-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: azure-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-gcp-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gcp-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-terraform-cloud-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-cloud-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-ansible-galaxy-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: ansible-galaxy-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-prometheus-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: prometheus-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-grafana-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: grafana-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-to-datadog-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: datadog-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-aws-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: aws-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-azure-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: azure-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-gcp-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gcp-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-terraform-cloud-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-cloud-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-ansible-galaxy-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: ansible-galaxy-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-prometheus-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: prometheus-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-grafana-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: grafana-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-to-datadog-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: datadog-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-to-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-to-istio-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: istio-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-to-linkerd-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: linkerd-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-to-traefik-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: traefik-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-to-nginx-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: nginx-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-to-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-to-istio-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: istio-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-to-linkerd-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: linkerd-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-to-traefik-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: traefik-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-to-nginx-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: nginx-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-to-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-to-istio-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: istio-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-to-linkerd-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: linkerd-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-to-traefik-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: traefik-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-to-nginx-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: nginx-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-to-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-to-istio-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: istio-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-to-linkerd-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: linkerd-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-to-traefik-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: traefik-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-to-nginx-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: nginx-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-to-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-to-istio-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: istio-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-to-linkerd-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: linkerd-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-to-traefik-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: traefik-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-to-nginx-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: nginx-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-to-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-to-vault-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: vault-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-to-consul-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: consul-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-to-istio-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: istio-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-to-linkerd-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: linkerd-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-to-traefik-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: traefik-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-to-nginx-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: nginx-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-development-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-testing-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-staging-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-production-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-sandbox-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-developer-demo-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: developer
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-development-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-development-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-development-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-testing-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-testing-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-testing-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-staging-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-staging-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-staging-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-production-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-production-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-production-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-sandbox-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-sandbox-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-sandbox-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-demo-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-demo-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-qa-demo-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: qa
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-development-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-testing-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-staging-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-production-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-sandbox-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-devops-demo-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: devops
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-development-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-testing-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-staging-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-production-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-sandbox-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-admin-demo-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: admin
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-development-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-development-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-development-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-testing-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-testing-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-testing-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-staging-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-staging-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-staging-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-production-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-production-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-production-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-sandbox-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-sandbox-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-sandbox-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-demo-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-demo-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-security-demo-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: security
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-development-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-development-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-development-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-testing-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-testing-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-testing-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-staging-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-staging-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-staging-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-production-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-production-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-production-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-sandbox-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-sandbox-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-sandbox-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-demo-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-demo-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-architect-demo-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: architect
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-development-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-development-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-development-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-testing-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-testing-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-testing-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-staging-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-staging-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-staging-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-production-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-production-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-production-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-sandbox-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-sandbox-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-sandbox-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-demo-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-demo-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-manager-demo-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: manager
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-development-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-development-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-development-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: development
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-testing-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-testing-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-testing-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: testing
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-staging-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-staging-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-staging-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: staging
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-production-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-production-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-production-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: production
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-sandbox-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-sandbox-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-sandbox-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: sandbox
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-demo-essential-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-demo-essential-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: demo
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-intern-demo-essential-slack-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: slack-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        role: intern
+        env: demo
+    default:
+      action: Allow
+

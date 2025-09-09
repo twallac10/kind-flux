@@ -7,4 +7,8 @@ resources:
 - sa.yaml
 - externalservice.yaml
 - generated-external-services.yaml
+- mesh-traffic-permissions.yaml
+- generated-mesh-traffic-permissions.yaml
+- advanced-mesh-traffic-permissions.yaml
+- role-based-mesh-traffic-permissions.yaml
 # - tunnel.yaml

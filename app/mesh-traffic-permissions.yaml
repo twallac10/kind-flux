@@ -1,0 +1,569 @@
+# Kong Mesh Traffic Permissions for External Services
+# This file contains MeshTrafficPermissions to allow traffic to external services
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-httpbin-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: httpbin-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-jsonplaceholder-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jsonplaceholder-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-github-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: github-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-google-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: google-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-stackoverflow-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: stackoverflow-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-reddit-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: reddit-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-docker-hub-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: docker-hub-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-npm-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: npm-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-pypi-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: pypi-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-kubernetes-io-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: kubernetes-io-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-aws-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: aws-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-azure-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: azure-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-gcp-api-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: gcp-api-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-terraform-registry-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: terraform-registry-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-helm-charts-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: helm-charts-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-prometheus-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: prometheus-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-grafana-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: grafana-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-jaeger-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: jaeger-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-elastic-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: elastic-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-mongodb-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: mongodb-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: MeshTrafficPermission
+metadata:
+  name: allow-redis-external
+  namespace: kuma-system
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: redis-external
+  from:
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: netshoot_httpbin_svc_80
+    default:
+      action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        kuma.io/service: httpbin_httpbin_svc_80
+    default:
+      action: Allow
