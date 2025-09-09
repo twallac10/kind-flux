@@ -89,7 +89,7 @@ metadata:
 spec:
   targetRef:
     kind: MeshSubset
-    labels:
+    tags:
       kuma.io/service: httpbin
   from:
   - targetRef:
@@ -124,7 +124,7 @@ metadata:
 spec:
   targetRef:
     kind: Dataplane
-    labels:
+    tags:
       app: netshoot
   default:
     passthroughMode: Matched
