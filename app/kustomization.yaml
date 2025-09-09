@@ -12,3 +12,4 @@ resources:
 - advanced-mesh-traffic-permissions.yaml
 - role-based-mesh-traffic-permissions.yaml
 # - tunnel.yaml
+- mongosh-deployment.yaml

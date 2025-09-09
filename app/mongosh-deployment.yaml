@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongosh
+  namespace: httpbin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongosh
+  template:
+    metadata:
+      labels:
+        app: mongosh
+    spec:
+      containers:
+      - name: mongosh
+        image: alpine/mongosh:2.0.2
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh"]
+        args: 
+        - "-c"
+        - |
+          echo "Connecting to MongoDB Atlas..."
+          mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net" --eval "
+            console.log('Connected to MongoDB!');
+            console.log('Database list:');
+            db.adminCommand('listDatabases').databases.forEach(db => console.log('- ' + db.name));
+            console.log('Current database:', db.getName());
+            console.log('Server status:');
+            console.log('MongoDB version:', db.version());
+            console.log('Connection established successfully!');
+          " || echo "Failed to connect to MongoDB"
+          echo "Keeping container alive..."
+          sleep 3600
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
