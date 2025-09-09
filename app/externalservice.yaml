@@ -319,7 +319,7 @@ spec:
   networking:
     address: testcluster.yzcupsf.mongodb.net:27017
     tls:
-      enabled: true
+      enabled: false
 
 ---
 apiVersion: kuma.io/v1alpha1
@@ -335,7 +335,39 @@ spec:
   networking:
     address: ac-tondqzl-shard-00-00.yzcupsf.mongodb.net:27017
     tls:
-      enabled: true
+      enabled: false
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mongodb-shard-01-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mongodb-shard-01-external
+    kuma.io/protocol: tcp
+  networking:
+    address: ac-tondqzl-shard-00-01.yzcupsf.mongodb.net:27017
+    tls:
+      enabled: false
+
+---
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
+mesh: demo
+metadata:
+  name: mongodb-shard-02-external
+  namespace: kuma-system
+spec:
+  tags:
+    kuma.io/service: mongodb-shard-02-external
+    kuma.io/protocol: tcp
+  networking:
+    address: ac-tondqzl-shard-00-02.yzcupsf.mongodb.net:27017
+    tls:
+      enabled: false
 
 ---
 apiVersion: kuma.io/v1alpha1
