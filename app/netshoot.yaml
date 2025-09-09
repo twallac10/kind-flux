@@ -78,26 +78,26 @@ spec:
     targetPort: 80
   selector:
     app: badnetshoot
----
-apiVersion: kuma.io/v1alpha1
-kind: MeshTrafficPermission
-metadata:
-  name: allow-httpbin-org
-  namespace: httpbin
-  labels:
-    kuma.io/mesh: demo
-spec:
-  targetRef:
-    kind: MeshSubset
-    tags:
-      kuma.io/service: httpbin
-  from:
-  - targetRef:
-      kind: MeshSubset
-      tags:
-        kuma.io/service: netshoot_httpbin_svc_80
-    default:
-      action: Allow
+# ---
+# apiVersion: kuma.io/v1alpha1
+# kind: MeshTrafficPermission
+# metadata:
+#   name: allow-httpbin-org
+#   namespace: httpbin
+#   labels:
+#     kuma.io/mesh: demo
+# spec:
+#   targetRef:
+#     kind: MeshSubset
+#     tags:
+#       kuma.io/service: httpbin
+#   from:
+#   - targetRef:
+#       kind: MeshSubset
+#       tags:
+#         kuma.io/service: netshoot_httpbin_svc_80
+#     default:
+#       action: Allow
 ---
 apiVersion: kuma.io/v1alpha1
 kind: ExternalService
@@ -131,5 +131,5 @@ spec:
     appendMatch:
     - type: Domain
       value: "httpbin.org"
-      protocol: tcp
+      protocol: tls
       port: 443
