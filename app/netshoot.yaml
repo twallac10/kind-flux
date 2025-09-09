@@ -124,7 +124,7 @@ metadata:
 spec:
   targetRef:
     kind: Dataplane
-    tags:
+    labels:
       app: netshoot
   default:
     passthroughMode: Matched
