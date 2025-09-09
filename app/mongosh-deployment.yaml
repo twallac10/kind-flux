@@ -23,18 +23,63 @@ spec:
         - |
           echo "=== MongoDB Atlas Connection Diagnostics ==="
           echo "Pod IP: $(hostname -i)"
+          
+          # Install required tools if missing
+          if ! command -v nc >/dev/null 2>&1; then
+            echo "Installing netcat..."
+            apk add --no-cache netcat-openbsd >/dev/null 2>&1 || echo "Failed to install netcat"
+          fi
+          
           echo "Testing DNS resolution..."
           echo "A record lookup:"
           nslookup testcluster.yzcupsf.mongodb.net || echo "A record DNS resolution failed"
           
           echo "SRV record lookup (required for mongodb+srv://):"
-          nslookup -type=SRV _mongodb._tcp.testcluster.yzcupsf.mongodb.net || echo "SRV record DNS resolution failed"
+          SRV_RESULT=$(nslookup -type=SRV _mongodb._tcp.testcluster.yzcupsf.mongodb.net 2>/dev/null)
+          
+          if echo "$SRV_RESULT" | grep -q "service ="; then
+            echo "$SRV_RESULT"
+            echo "Extracting MongoDB endpoints from SRV records..."
+            
+            # More robust parsing - handle different nslookup formats
+            ENDPOINTS=$(echo "$SRV_RESULT" | grep "service =" | while read line; do
+              # Extract host and port from different possible formats
+              if echo "$line" | grep -q "service ="; then
+                # Format: service = priority weight port target
+                port=$(echo "$line" | awk '{print $(NF-1)}')
+                host=$(echo "$line" | awk '{print $NF}' | sed 's/\.$//')
+                if [ ! -z "$host" ] && [ ! -z "$port" ]; then
+                  echo "$host:$port"
+                fi
+              fi
+            done)
+            
+            if [ ! -z "$ENDPOINTS" ]; then
+              echo "Found endpoints:"
+              echo "$ENDPOINTS"
+              
+              echo "Testing network connectivity to actual MongoDB endpoints..."
+              echo "$ENDPOINTS" | while read endpoint; do
+                if [ ! -z "$endpoint" ]; then
+                  host=$(echo $endpoint | cut -d: -f1)
+                  port=$(echo $endpoint | cut -d: -f2)
+                  echo "Testing $host:$port..."
+                  if command -v nc >/dev/null 2>&1; then
+                    nc -zv $host $port 2>&1 || echo "Connection to $endpoint failed"
+                  else
+                    echo "netcat not available, skipping connectivity test"
+                  fi
+                fi
+              done
+            else
+              echo "No valid endpoints extracted from SRV records"
+            fi
+          else
+            echo "SRV record DNS resolution failed or no service records found"
+          fi
           
           echo "TXT record lookup (for connection options):"
           nslookup -type=TXT testcluster.yzcupsf.mongodb.net || echo "TXT record DNS resolution failed"
-          
-          echo "Testing network connectivity..."
-          nc -zv testcluster.yzcupsf.mongodb.net 27017 || echo "Network connection failed"
           
           echo "Attempting MongoDB connection with detailed error info..."
           mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net" \
