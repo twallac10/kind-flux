@@ -22,7 +22,7 @@ spec:
         - "-c"
         - |
           echo "Connecting to MongoDB Atlas..."
-          mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net" --eval "
+          mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net:27017" --eval "
             console.log('Connected to MongoDB!');
             console.log('Database list:');
             db.adminCommand('listDatabases').databases.forEach(db => console.log('- ' + db.name));
