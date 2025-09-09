@@ -25,6 +25,18 @@ spec:
         - |
           echo "=== MongoDB Atlas Connection Diagnostics ==="
           echo "Pod IP: $(hostname -i)"
+          echo "Pod hostname: $(hostname)"
+          echo "Environment check:"
+          echo "- User: $(whoami)"
+          echo "- Shell: $SHELL"
+          echo "- Working directory: $(pwd)"
+          echo "- DNS servers:"
+          cat /etc/resolv.conf | grep nameserver || echo "Could not read DNS config"
+          
+          # Check for any proxy or network environment variables
+          echo "- Network environment variables:"
+          env | grep -i proxy || echo "No proxy variables set"
+          env | grep -i dns || echo "No DNS variables set"
           
           # Install required tools if missing
           if ! command -v nc >/dev/null 2>&1; then
@@ -84,6 +96,7 @@ spec:
           nslookup -type=TXT testcluster.yzcupsf.mongodb.net || echo "TXT record DNS resolution failed"
           
           echo "Attempting MongoDB connection with detailed error info..."
+          echo "Method 1: Standard mongodb+srv connection..."
           mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net" \
             --quiet \
             --eval "
@@ -94,14 +107,42 @@ spec:
               console.log('MongoDB version:', db.version());
               console.log('✓ Connection test completed successfully!');
             " || {
-              echo "❌ MongoDB connection failed"
-              echo "Trying alternative connection methods..."
+              echo "❌ Standard mongodb+srv connection failed"
               
-              # Try with explicit TLS settings
+              echo "Method 2: Alternative format with explicit username..."
+              mongosh "mongodb+srv://testcluster.yzcupsf.mongodb.net" \
+                --username twallace \
+                --password 3S3t9HuzaOmzFgCx \
+                --eval "console.log('Connected with separate credentials!')" || echo "Alternative format failed"
+              
+              echo "Method 3: With explicit authSource..."
+              mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net/?authSource=admin" \
+                --eval "console.log('Connected with authSource!')" || echo "authSource method failed"
+              
+              echo "Method 4: With retryWrites and w=majority..."
+              mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net/?retryWrites=true&w=majority" \
+                --eval "console.log('Connected with retry options!')" || echo "Retry options failed"
+              
+              echo "Method 5: With explicit TLS settings..."
               mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net" \
                 --tls \
                 --tlsAllowInvalidCertificates \
-                --eval "console.log('Connected with relaxed TLS!')" || echo "TLS connection also failed"
+                --eval "console.log('Connected with relaxed TLS!')" || echo "Relaxed TLS failed"
+              
+              echo "Method 6: With connection timeout..."
+              mongosh "mongodb+srv://twallace:3S3t9HuzaOmzFgCx@testcluster.yzcupsf.mongodb.net/?connectTimeoutMS=30000&socketTimeoutMS=30000" \
+                --eval "console.log('Connected with timeouts!')" || echo "Timeout method failed"
+              
+              echo "Method 7: Testing direct endpoint connection (if SRV resolved)..."
+              if [ ! -z "$ENDPOINTS" ]; then
+                FIRST_ENDPOINT=$(echo "$ENDPOINTS" | head -1)
+                if [ ! -z "$FIRST_ENDPOINT" ]; then
+                  host=$(echo $FIRST_ENDPOINT | cut -d: -f1)
+                  echo "Trying direct connection to $host..."
+                  mongosh "mongodb://twallace:3S3t9HuzaOmzFgCx@$host:27017/?tls=true&authSource=admin" \
+                    --eval "console.log('Connected directly to endpoint!')" || echo "Direct endpoint failed"
+                fi
+              fi
             }
           
           echo "=== End Diagnostics ==="
