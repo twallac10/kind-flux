@@ -17,19 +17,26 @@ spec:
     spec:
       containers:
       - name: mongosh
-        image: alpine/mongosh:2.0.2
+        image: rtsp/mongosh:latest
         imagePullPolicy: IfNotPresent
         command: ["/bin/sh"]
         args: 
         - "-c"
         - |
           echo "=== MongoDB Atlas Connection Diagnostics ==="
+          echo "Image: rtsp/mongosh (Debian-based)"
           echo "Pod IP: $(hostname -i)"
           echo "Pod hostname: $(hostname)"
           echo "Environment check:"
           echo "- User: $(whoami)"
           echo "- Shell: $SHELL"
           echo "- Working directory: $(pwd)"
+          echo "- OS Info: $(cat /etc/os-release | grep PRETTY_NAME || echo 'Unknown OS')"
+          echo "- Available tools:"
+          echo "  - mongosh: $(which mongosh 2>/dev/null || echo 'not found')"
+          echo "  - nc/netcat: $(which nc 2>/dev/null || echo 'not found')"
+          echo "  - dig: $(which dig 2>/dev/null || echo 'not found')"
+          echo "  - nslookup: $(which nslookup 2>/dev/null || echo 'not found')"
           echo "- DNS servers:"
           cat /etc/resolv.conf | grep nameserver || echo "Could not read DNS config"
           
@@ -38,10 +45,10 @@ spec:
           env | grep -i proxy || echo "No proxy variables set"
           env | grep -i dns || echo "No DNS variables set"
           
-          # Install required tools if missing
+          # Install required tools if missing (Debian-based system)
           if ! command -v nc >/dev/null 2>&1; then
             echo "Installing netcat..."
-            apk add --no-cache netcat-openbsd >/dev/null 2>&1 || echo "Failed to install netcat"
+            apt-get update >/dev/null 2>&1 && apt-get install -y netcat-openbsd >/dev/null 2>&1 || echo "Failed to install netcat"
           fi
           
           echo "Testing DNS resolution..."
