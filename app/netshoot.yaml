@@ -131,5 +131,5 @@ spec:
     appendMatch:
     - type: Domain
       value: "httpbin.org"
-      protocol: tls
+      protocol: tcp
       port: 443
