@@ -1,6 +1,6 @@
 # Kong Mesh External Services & Traffic Permissions - Kustomize Setup
 
-This setup generates approximately 100+ Kong mesh External Services and 968 MeshTrafficPermissions using Kustomize for comprehensive testing and demonstration purposes.
+This setup generates approximately 100+ Kong mesh External Services and 965 MeshTrafficPermissions using Kustomize for comprehensive testing and demonstration purposes.
 
 ## Files Overview
 
@@ -10,10 +10,10 @@ This setup generates approximately 100+ Kong mesh External Services and 968 Mesh
 - `external-service-base.yaml` - Base template for external services
 - `generate-external-services.sh` - Bash script that generates additional external services
 
-### MeshTrafficPermissions (968 total)
+### MeshTrafficPermissions (965 total)
 - `mesh-traffic-permissions.yaml` - Contains 21 basic traffic permissions for core services
 - `generated-mesh-traffic-permissions.yaml` - Contains 610 comprehensive traffic permissions for all service combinations
-- `advanced-mesh-traffic-permissions.yaml` - Contains 19 specialized permissions for observability, admin access, and component-based access
+- `advanced-mesh-traffic-permissions.yaml` - Contains 16 specialized permissions for observability, admin access (⚠️ **Fixed**: removed wildcard patterns)
 - `role-based-mesh-traffic-permissions.yaml` - Contains 318 role-based permissions for different user roles and environments
 - `generate-mesh-traffic-permissions.sh` - Script for generating comprehensive traffic permissions
 - `generate-role-based-permissions.sh` - Script for generating role-based traffic permissions
@@ -23,9 +23,21 @@ This setup generates approximately 100+ Kong mesh External Services and 968 Mesh
 - `kustomization-generators.yaml` - Alternative Kustomize configuration showing generator patterns
 - `netshoot.yaml` - Contains 1 additional external service example
 
-## Total Resources: 1,092
+## Total Resources: 1,089
 - **124 External Services**
-- **968 MeshTrafficPermissions**
+- **965 MeshTrafficPermissions**
+
+### ⚠️ **Important: Kong Mesh Tag Validation**
+
+Kong mesh has strict validation rules for service tags:
+- **Tag values must consist of alphanumeric characters, dots, dashes and underscores only**
+- **No wildcard patterns (`*`, `?`) are allowed**
+- **Service names must be exact matches**
+
+**Fixed Issues:**
+- Removed wildcard patterns like `"*-external"` and `"*-api-external"`
+- Replaced with specific service names for proper validation
+- All service tags now comply with Kong mesh validation requirements
 
 ### Categories of External Services Created:
 
