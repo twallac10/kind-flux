@@ -317,7 +317,7 @@ spec:
     kuma.io/service: mongodb-external
     kuma.io/protocol: tcp
   networking:
-    address: mongodb.com:443
+    address: testcluster.yzcupsf.mongodb.net:27017
     tls:
       enabled: true
 

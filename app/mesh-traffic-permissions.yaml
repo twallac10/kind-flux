@@ -540,6 +540,12 @@ spec:
         kuma.io/service: httpbin_httpbin_svc_80
     default:
       action: Allow
+  - targetRef:
+      kind: MeshSubset
+      tags:
+        app: mongosh
+    default:
+      action: Allow
 
 ---
 apiVersion: kuma.io/v1alpha1
