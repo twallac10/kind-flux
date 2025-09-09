@@ -12,7 +12,6 @@ spec:
     metadata:
       labels:
         app: mongosh
-      annotations:
         kuma.io/sidecar-injection: disabled
     spec:
       containers:
