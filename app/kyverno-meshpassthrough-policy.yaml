@@ -1,0 +1,81 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: restrict-meshpassthrough
+  annotations:
+    policies.kyverno.io/title: Restrict MeshPassthrough Resources
+    policies.kyverno.io/category: Security
+    policies.kyverno.io/subject: MeshPassthrough
+    policies.kyverno.io/description: >-
+      This policy restricts MeshPassthrough resources to only allow specific 
+      configurations for MongoDB Atlas connectivity. Only MongoDB subdomains 
+      under .mongodb.net are allowed with TLS on port 27017.
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+  - name: validate-meshpassthrough-config
+    match:
+      any:
+      - resources:
+          kinds:
+          - MeshPassthrough
+    validate:
+      message: "MeshPassthrough must only target MongoDB Atlas domains with TLS on port 27017"
+      pattern:
+        metadata:
+          labels:
+            kuma.io/mesh: demo
+        spec:
+          targetRef:
+            kind: Dataplane
+            labels: {}
+          default:
+            passthroughMode: Matched
+            appendMatch:
+            - type: Domain
+              value: "*.*.mongodb.net"
+              protocol: tls
+              port: 27017
+  - name: block-meshpassthrough-in-unauthorized-namespaces
+    match:
+      any:
+      - resources:
+          kinds:
+          - MeshPassthrough
+    context:
+    - name: namespace
+      apiCall:
+        urlPath: "/api/v1/namespaces/{{ request.namespace }}"
+    validate:
+      message: "MeshPassthrough is only allowed in namespaces with pp.hqy.io/pasture label"
+      deny:
+        conditions:
+        - key: "{{ namespace.metadata.labels.\"pp.hqy.io/pasture\" || 'not-found' }}"
+          operator: Equals
+          value: "not-found"
+  - name: allow-netshoot-httpbin-passthrough
+    match:
+      any:
+      - resources:
+          kinds:
+          - MeshPassthrough
+          names:
+          - wildcard-passthrough
+          namespaces:
+          - httpbin
+    validate:
+      message: "Existing netshoot passthrough for httpbin.org is allowed"
+      pattern:
+        spec:
+          targetRef:
+            kind: Dataplane
+            labels:
+              app: netshoot
+          default:
+            passthroughMode: Matched
+            appendMatch:
+            - type: Domain
+              value: "httpbin.org"
+              protocol: tls
+              port: 443
