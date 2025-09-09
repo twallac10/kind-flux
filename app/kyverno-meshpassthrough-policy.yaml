@@ -7,21 +7,32 @@ metadata:
     policies.kyverno.io/category: Security
     policies.kyverno.io/subject: MeshPassthrough
     policies.kyverno.io/description: >-
-      This policy restricts MeshPassthrough resources to only allow specific 
-      configurations for MongoDB Atlas connectivity. Only MongoDB subdomains 
-      under .mongodb.net are allowed with TLS on port 27017.
+      This policy allows any MeshPassthrough in namespaces with pp.hqy.io/solution=zcor.
+      Namespaces with any other value for pp.hqy.io/solution are restricted to MongoDB Atlas only.
 spec:
   validationFailureAction: Enforce
   background: true
   rules:
-  - name: validate-meshpassthrough-config
+  - name: restrict-mongodb-only-for-non-zcor-solutions
     match:
       any:
       - resources:
           kinds:
           - MeshPassthrough
+    context:
+    - name: namespace
+      apiCall:
+        urlPath: "/api/v1/namespaces/{{ request.namespace }}"
+    preconditions:
+      any:
+      - key: "{{ namespace.metadata.labels.\"pp.hqy.io/solution\" || 'not-found' }}"
+        operator: NotEquals
+        value: "not-found"
+      - key: "{{ namespace.metadata.labels.\"pp.hqy.io/solution\" || 'not-found' }}"
+        operator: NotEquals
+        value: "zcor"
     validate:
-      message: "MeshPassthrough must only target MongoDB Atlas domains with TLS on port 27017"
+      message: "In namespaces with pp.hqy.io/solution label (non-zcor values), MeshPassthrough must only target MongoDB Atlas domains with TLS on port 27017"
       pattern:
         metadata:
           labels:
@@ -37,45 +48,3 @@ spec:
               value: "*.*.mongodb.net"
               protocol: tls
               port: 27017
-  - name: block-meshpassthrough-in-unauthorized-namespaces
-    match:
-      any:
-      - resources:
-          kinds:
-          - MeshPassthrough
-    context:
-    - name: namespace
-      apiCall:
-        urlPath: "/api/v1/namespaces/{{ request.namespace }}"
-    validate:
-      message: "MeshPassthrough is only allowed in namespaces with pp.hqy.io/pasture label"
-      deny:
-        conditions:
-        - key: "{{ namespace.metadata.labels.\"pp.hqy.io/pasture\" || 'not-found' }}"
-          operator: Equals
-          value: "not-found"
-  - name: allow-netshoot-httpbin-passthrough
-    match:
-      any:
-      - resources:
-          kinds:
-          - MeshPassthrough
-          names:
-          - wildcard-passthrough
-          namespaces:
-          - httpbin
-    validate:
-      message: "Existing netshoot passthrough for httpbin.org is allowed"
-      pattern:
-        spec:
-          targetRef:
-            kind: Dataplane
-            labels:
-              app: netshoot
-          default:
-            passthroughMode: Matched
-            appendMatch:
-            - type: Domain
-              value: "httpbin.org"
-              protocol: tls
-              port: 443
