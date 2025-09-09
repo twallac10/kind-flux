@@ -113,23 +113,23 @@ spec:
     address: httpbin.org:443
     tls: # optional
       enabled: false
----
-apiVersion: kuma.io/v1alpha1
-kind: MeshPassthrough
-metadata:
-  name: wildcard-passthrough
-  namespace: httpbin
-  labels:
-    kuma.io/mesh: demo
-spec:
-  targetRef:
-    kind: Dataplane
-    labels:
-      app: netshoot
-  default:
-    passthroughMode: Matched
-    appendMatch:
-    - type: Domain
-      value: httpbin.org
-      protocol: tls
-      port: 443
+# ---
+# apiVersion: kuma.io/v1alpha1
+# kind: MeshPassthrough
+# metadata:
+#   name: wildcard-passthrough
+#   namespace: httpbin
+#   labels:
+#     kuma.io/mesh: demo
+# spec:
+#   targetRef:
+#     kind: Dataplane
+#     labels:
+#       app: netshoot
+#   default:
+#     passthroughMode: Matched
+#     appendMatch:
+#     - type: Domain
+#       value: httpbin.org
+#       protocol: tls
+#       port: 443
