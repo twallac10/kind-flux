@@ -24,7 +24,7 @@ spec:
       apiCall:
         urlPath: "/api/v1/namespaces/{{ request.namespace }}"
     preconditions:
-      any:
+      all:
       - key: "{{ namespace.metadata.labels.\"pp.hqy.io/solution\" || 'not-found' }}"
         operator: NotEquals
         value: "not-found"
