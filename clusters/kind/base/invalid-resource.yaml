@@ -1,7 +1,0 @@
-apiVersion: intentionally.invalid/v1
-kind: DoesNotExist
-metadata:
-  name: notification-failure-test
-  namespace: flux-system
-spec:
-  test: true
