@@ -1,0 +1,16 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: kyverno-status
+  namespace: flux-system
+spec:
+  providerRef:
+    name: github-status
+  eventSeverity: info
+  eventSources:
+    - kind: HelmRelease
+      name: kyverno
+      namespace: policy
+    - kind: HelmRelease
+      name: kyverno-policies
+      namespace: policy
