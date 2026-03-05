@@ -1,0 +1,18 @@
+# Test 6: Mesh targetRef in httpbin namespace (should FAIL)
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: test-mesh-targetref-httpbin
+  namespace: httpbin
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: Mesh
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "*.testcluster.mongodb.net"
+      protocol: tls
+      port: 27017

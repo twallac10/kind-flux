@@ -1,0 +1,18 @@
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: postman-echo-passthrough
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: MeshSubset
+    tags:
+      kuma.io/service: netshoot_httpbin_svc_80
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "postman-echo.com"
+      protocol: tls
+      port: 443

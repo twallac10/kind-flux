@@ -1,0 +1,20 @@
+# Test 3: MongoDB MeshPassthrough in test-zcor namespace (should PASS)
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: test-mongodb-zcor
+  namespace: test-zcor
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: Dataplane
+    labels:
+      app: myapp
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "*.production.mongodb.net"
+      protocol: tls
+      port: 27017

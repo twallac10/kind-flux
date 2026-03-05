@@ -1,0 +1,20 @@
+# Test 4: Non-MongoDB MeshPassthrough in test-zcor namespace (should PASS)
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: test-nonmongo-zcor
+  namespace: test-zcor
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: Dataplane
+    labels:
+      app: testapp
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "api.github.com"
+      protocol: tls
+      port: 443

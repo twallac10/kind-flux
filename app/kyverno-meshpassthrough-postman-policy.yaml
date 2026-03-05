@@ -1,0 +1,52 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: restrict-meshpassthrough-postman
+  annotations:
+    policies.kyverno.io/title: Restrict MeshPassthrough Resources
+    policies.kyverno.io/category: Security
+    policies.kyverno.io/subject: MeshPassthrough
+    policies.kyverno.io/description: >-
+      This policy restricts MeshPassthrough resources to only target Postman Echo domains.
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+  - name: restrict-postman-echo-only
+    match:
+      any:
+      - resources:
+          kinds:
+          - MeshPassthrough
+    validate:
+      message: "MeshPassthrough must only target Postman Echo domains with TLS on port 443"
+      anyPattern:
+      - metadata:
+          labels:
+            kuma.io/mesh: demo
+        spec:
+          targetRef:
+            kind: Dataplane
+            labels: {}
+          default:
+            passthroughMode: Matched
+            appendMatch:
+            - type: Domain
+              value: "postman-echo.com"
+              protocol: tls
+              port: 443
+      - metadata:
+          labels:
+            kuma.io/mesh: demo
+        spec:
+          targetRef:
+            kind: MeshSubset
+            tags:
+              kuma.io/service: "?*"
+          default:
+            passthroughMode: Matched
+            appendMatch:
+            - type: Domain
+              value: "postman-echo.com"
+              protocol: tls
+              port: 443

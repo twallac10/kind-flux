@@ -1,0 +1,20 @@
+# Test 2: Non-MongoDB MeshPassthrough in httpbin namespace (should FAIL)
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: test-nonmongo-httpbin
+  namespace: httpbin
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: Dataplane
+    labels:
+      app: netshoot
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "httpbin.org"
+      protocol: tls
+      port: 443

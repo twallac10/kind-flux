@@ -1,0 +1,18 @@
+# Test 7: Mesh targetRef in test-zcor namespace (should PASS)
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: test-mesh-targetref-zcor
+  namespace: test-zcor
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: Mesh
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "*.example.com"
+      protocol: http
+      port: 80
