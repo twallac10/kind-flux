@@ -4,6 +4,7 @@ resources:
 - base.yaml
 - kong.yaml
 - keyverno.yaml
+- invalid-resource.yaml
 sortOptions:
   order: fifo
 
