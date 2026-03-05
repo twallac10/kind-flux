@@ -8,9 +8,6 @@ spec:
     name: github-status
   eventSeverity: info
   eventSources:
-    - kind: HelmRelease
-      name: kyverno
-      namespace: policy
-    - kind: HelmRelease
-      name: kyverno-policies
-      namespace: policy
+    - kind: Kustomization
+      name: base
+      namespace: flux-system
