@@ -20,6 +20,7 @@ metadata:
   name: kube-state-metrics
   namespace: observability
 spec:
+  serviceAccountName: helm-controller
   interval: 1m0s
   chart:
     spec:

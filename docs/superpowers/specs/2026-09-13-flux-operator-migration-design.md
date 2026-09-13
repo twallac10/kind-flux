@@ -126,14 +126,30 @@ a multi-tenant example using the operator's `ResourceSet` API.
 
 ### Multi-tenancy lockdown behavior
 
-`cluster.multitenant: true` turns on Flux's standard tenant lockdown
-(mandatory `serviceAccountName` and no cross-namespace source/secret refs
-for Kustomizations outside `flux-system`). `base`/`config`/`app` stay in the
-`flux-system` namespace and keep running as the default Flux identity —
-unaffected. Each tenant is fully self-contained in its own namespace: its
+`cluster.multitenant: true` turns on Flux's standard tenant lockdown:
+`--no-cross-namespace-refs=true` on every controller, and
+`--default-service-account=<tenantDefaultServiceAccount>` on
+kustomize-controller/helm-controller. The second flag is easy to
+underestimate: it applies to **every** `Kustomization`/`HelmRelease` that
+doesn't set its own `serviceAccountName`, with no exception for
+`flux-system` itself. Discovered live (not anticipated in the original
+design): this means every platform `Kustomization` (`base`, `config`,
+`tenants`, `app`, `notifications`) and every platform `HelmRelease`
+(`kuma-mesh`, `kyverno`, `kyverno-policies`, `kube-state-metrics`) must
+explicitly set `serviceAccountName` to the matching controller's own
+identity (`kustomize-controller` / `helm-controller`) to keep running at
+full privilege — otherwise they try to impersonate the (nonexistent)
+`tenantDefaultServiceAccount` and fail outright. Both controller
+`ServiceAccount`s carry the standard cluster-wide Flux RBAC binding shipped
+with every Flux install (same `ClusterRoleBinding`), so this is safe and is
+the same pattern the operator uses for its own self-managed sync
+`Kustomization` under this profile.
+
+Each tenant, by contrast, is fully self-contained in its own namespace: its
 own `GitRepository`, `Secret`, and `Kustomization`, reconciled under its own
-`ServiceAccount` — it has no path to reference `flux-system`'s source or
-secrets, or another tenant's.
+scoped `flux` `ServiceAccount` (set explicitly, correctly, from the start) —
+it has no path to reference `flux-system`'s source or secrets, or another
+tenant's.
 
 ## Testing
 

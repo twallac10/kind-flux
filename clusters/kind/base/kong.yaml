@@ -13,6 +13,7 @@ metadata:
   name: kuma-mesh
   namespace: kuma-system
 spec:
+  serviceAccountName: helm-controller
   interval: 1m0s
   timeout: 2m
   chart:

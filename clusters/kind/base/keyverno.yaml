@@ -13,6 +13,7 @@ metadata:
   name: kyverno
   namespace: policy
 spec:
+  serviceAccountName: helm-controller
   interval: 1m0s
   timeout: 2m
   chart:
@@ -32,6 +33,7 @@ metadata:
   name: kyverno-policies
   namespace: policy
 spec:
+  serviceAccountName: helm-controller
   interval: 1m0s
   timeout: 2m
   chart:
