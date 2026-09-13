@@ -86,9 +86,21 @@ a multi-tenant example using the operator's `ResourceSet` API.
   - `ServiceAccount: flux` in that namespace
   - `RoleBinding` binding that `ServiceAccount` to the built-in `edit`
     `ClusterRole`, scoped to the tenant namespace
-  - `Kustomization` (`serviceAccountName: flux`, `targetNamespace: <tenant>`,
-    `path: ./tenants/<tenant>`, `prune: true`, `sourceRef` → the
-    operator-created `flux-system` `GitRepository`)
+  - `Secret: flux-git-repo` in the tenant namespace, populated via the
+    `fluxcd.controlplane.io/copyFrom: flux-system/flux-git-repo` annotation
+    (lockdown forbids a `GitRepository` from referencing a `Secret` in
+    another namespace, so the credentials have to be copied in per tenant)
+  - `GitRepository: <tenant>` in the tenant namespace, pointed at this same
+    repo/branch, using the copied `flux-git-repo` secret
+  - `Kustomization: <tenant>` in the tenant namespace (`serviceAccountName:
+    flux`, `path: ./tenants/<tenant>`, `prune: true`, `sourceRef` → its
+    *own* namespace-local `GitRepository` — under lockdown
+    (`--no-cross-namespace-refs`), a tenant `Kustomization` cannot reference
+    the shared `flux-system` `GitRepository`, confirmed against the
+    canonical
+    [fluxcd/flux2-multi-tenancy](https://github.com/fluxcd/flux2-multi-tenancy)
+    reference, which puts `GitRepository` + `Kustomization` in each
+    tenant's own namespace for exactly this reason)
 - `clusters/kind/tenants/kustomization.yaml` — new, references
   `resourceset.yaml`.
 - `tenants/team-a/configmap.yaml`, `tenants/team-b/configmap.yaml` — one
@@ -103,8 +115,10 @@ a multi-tenant example using the operator's `ResourceSet` API.
 (mandatory `serviceAccountName` and no cross-namespace source/secret refs
 for Kustomizations outside `flux-system`). `base`/`config`/`app` stay in the
 `flux-system` namespace and keep running as the default Flux identity —
-unaffected. Only the generated tenant `Kustomization`s are subject to
-lockdown, confined to their own namespace via their own `ServiceAccount`.
+unaffected. Each tenant is fully self-contained in its own namespace: its
+own `GitRepository`, `Secret`, and `Kustomization`, reconciled under its own
+`ServiceAccount` — it has no path to reference `flux-system`'s source or
+secrets, or another tenant's.
 
 ## Testing
 
