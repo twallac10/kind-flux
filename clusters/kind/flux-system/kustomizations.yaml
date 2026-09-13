@@ -4,6 +4,7 @@ metadata:
   name: base
   namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
   interval: 1m0s
   sourceRef:
     kind: GitRepository
@@ -17,6 +18,7 @@ metadata:
   name: config
   namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
   interval: 1m0s
   sourceRef:
     kind: GitRepository
@@ -33,6 +35,7 @@ metadata:
   name: tenants
   namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
   interval: 1m0s
   sourceRef:
     kind: GitRepository
@@ -49,6 +52,7 @@ metadata:
   name: app
   namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
   interval: 1m0s
   sourceRef:
     kind: GitRepository
@@ -67,6 +71,7 @@ metadata:
   name: notifications
   namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
   interval: 1m0s
   sourceRef:
     kind: GitRepository
