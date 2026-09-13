@@ -32,15 +32,12 @@ spec:
         operator: NotEquals
         value: "zcor"
     validate:
-      message: "In namespaces with pp.hqy.io/solution label (non-zcor values), MeshPassthrough must only target MongoDB Atlas domains with TLS on port 27017"
-      pattern:
-        metadata:
+      message: "In namespaces with pp.hqy.io/solution label (non-zcor values), MeshPassthrough must only target MongoDB Atlas domains with TLS on port 27017 or Postman Echo with TLS on port 443"
+      anyPattern:
+      - metadata:
           labels:
             kuma.io/mesh: demo
         spec:
-          targetRef:
-            kind: Dataplane
-            labels: {}
           default:
             passthroughMode: Matched
             appendMatch:
@@ -48,3 +45,14 @@ spec:
               value: "*.*.mongodb.net"
               protocol: tls
               port: 27017
+      - metadata:
+          labels:
+            kuma.io/mesh: demo
+        spec:
+          default:
+            passthroughMode: Matched
+            appendMatch:
+            - type: Domain
+              value: "postman-echo.com"
+              protocol: tls
+              port: 443

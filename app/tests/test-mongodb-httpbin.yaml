@@ -1,0 +1,20 @@
+# Test 1: MongoDB MeshPassthrough in httpbin namespace (should PASS)
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: test-mongodb-httpbin
+  namespace: httpbin
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: Dataplane
+    labels:
+      app: mongosh
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "*.testcluster.mongodb.net"
+      protocol: tls
+      port: 27017

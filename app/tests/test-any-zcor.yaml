@@ -1,0 +1,20 @@
+# Test 5: Any domain MeshPassthrough in test-zcor namespace (should PASS)
+apiVersion: kuma.io/v1alpha1
+kind: MeshPassthrough
+metadata:
+  name: test-any-zcor
+  namespace: test-zcor
+  labels:
+    kuma.io/mesh: demo
+spec:
+  targetRef:
+    kind: Dataplane
+    labels:
+      app: wildcard-test
+  default:
+    passthroughMode: Matched
+    appendMatch:
+    - type: Domain
+      value: "*.example.com"
+      protocol: http
+      port: 80

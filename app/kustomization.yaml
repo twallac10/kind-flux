@@ -13,3 +13,8 @@ resources:
 - role-based-mesh-traffic-permissions.yaml
 # - tunnel.yaml
 - mongosh-deployment.yaml
+- kyverno-meshpassthrough-policy.yaml
+- kyverno-meshpassthrough-rbac.yaml
+- mongodb-passthrough.yaml
+- kyverno-meshpassthrough-postman-policy.yaml
+- meshpassthrough-postman-echo.yaml
