@@ -35,6 +35,25 @@ spec:
   - kind: ConfigMap
     name: kube-state-metrics-config
     valuesKey: kube-state-metrics-config.yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: helm-controller
+  namespace: observability
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: helm-controller-observability
+subjects:
+  - kind: ServiceAccount
+    name: helm-controller
+    namespace: observability
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
 # ---
 # apiVersion: kuma.io/v1alpha1
 # kind: MeshMetric

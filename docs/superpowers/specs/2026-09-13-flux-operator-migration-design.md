@@ -136,14 +136,36 @@ doesn't set its own `serviceAccountName`, with no exception for
 design): this means every platform `Kustomization` (`base`, `config`,
 `tenants`, `app`, `notifications`) and every platform `HelmRelease`
 (`kuma-mesh`, `kyverno`, `kyverno-policies`, `kube-state-metrics`) must
-explicitly set `serviceAccountName` to the matching controller's own
-identity (`kustomize-controller` / `helm-controller`) to keep running at
-full privilege — otherwise they try to impersonate the (nonexistent)
-`tenantDefaultServiceAccount` and fail outright. Both controller
-`ServiceAccount`s carry the standard cluster-wide Flux RBAC binding shipped
-with every Flux install (same `ClusterRoleBinding`), so this is safe and is
-the same pattern the operator uses for its own self-managed sync
+explicitly set `serviceAccountName` — otherwise they try to impersonate the
+(nonexistent) `tenantDefaultServiceAccount` and fail outright.
+
+For the 5 platform `Kustomization`s, all of which live in `flux-system`,
+that value is simply `kustomize-controller` — the real `ServiceAccount`
+`kustomize-controller`'s own pod uses, which already carries the standard
+cluster-wide Flux RBAC binding shipped with every Flux install. This is the
+same pattern the operator uses for its own self-managed sync
 `Kustomization` under this profile.
+
+The 4 platform `HelmRelease`s are different: Flux requires
+`serviceAccountName` to name a `ServiceAccount` in *that object's own*
+namespace (confirmed against fluxcd.io's docs), and `kuma-mesh`/
+`kyverno`/`kyverno-policies`/`kube-state-metrics` live in `kuma-system`/
+`policy`/`observability` — not `flux-system` — so `helm-controller`'s real
+`ServiceAccount` isn't reachable there. Each of those 3 namespaces instead
+gets its own dedicated `helm-controller` `ServiceAccount`, bound to
+`cluster-admin` via a `ClusterRoleBinding`, colocated in the same manifest
+file as the `HelmRelease`(s) that use it. This restores exactly the
+privilege level these releases always had pre-lockdown (helm-controller's
+own un-impersonated pod identity is already cluster-admin-equivalent) and
+is unrelated to — and no looser than — the tenant `ResourceSet`'s much
+narrower `edit`-scoped `flux` `ServiceAccount` per tenant namespace.
+(An alternative considered and rejected: relocating these `HelmRelease`/
+`HelmRepository` objects into `flux-system` and using `spec.targetNamespace`
+to still install into `kuma-system`/`policy`/`observability`. Rejected
+because `kube-state-metrics`'s `valuesFrom` reference to a `ConfigMap`
+generated in `observability` would then itself become a cross-namespace
+reference under the same lockdown rule — trading one violation for
+another, for a larger and more invasive diff.)
 
 Each tenant, by contrast, is fully self-contained in its own namespace: its
 own `GitRepository`, `Secret`, and `Kustomization`, reconciled under its own
