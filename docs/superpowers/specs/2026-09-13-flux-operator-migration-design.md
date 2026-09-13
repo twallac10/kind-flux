@@ -50,12 +50,26 @@ a multi-tenant example using the operator's `ResourceSet` API.
    - That top-level Kustomization reconciles `clusters/kind/flux-system/`,
      which contains the `FluxInstance` manifest itself (self-management,
      same trick as today's self-referencing `HelmRelease`) plus the
-     `base`, `config`, `tenants`, and `app` `Kustomization` objects (moved
-     out of `bootstrap.yaml`).
+     `base`, `config`, `tenants`, `app`, and `notifications`
+     `Kustomization` objects (`notifications` ported forward from
+     `origin/main` during the merge — see below).
    - The `tenants` Kustomization applies a `ResourceSet`, which the operator
      expands into per-tenant `Namespace`/`ServiceAccount`/`RoleBinding`/
      `Kustomization` objects. Each tenant `Kustomization` runs under its own
      `ServiceAccount`, pulling `./tenants/<name>`.
+
+While this work was in progress, `origin/main` independently gained 9
+commits unrelated to this migration (a Kyverno postman-echo passthrough
+policy, test scripts, and a new `clusters/kind/notifications/` directory
+wiring Flux alerts to GitHub commit statuses). These were merged in without
+loss from either side: this migration's versions of the files it rewrote
+were kept, and origin's new `notifications` Kustomization (originally
+appended to `bootstrap.yaml`) was ported into the new file layout above.
+One side effect: origin's `bootstrap.yaml` had already given its `app`
+Kustomization `prune: true`/`wait: true`/`timeout: 5m0s` — fields the
+Non-goals section above assumed stayed untouched based on the *dead*
+`clusters/kind/apps.yaml` file (which lacked them). The merge carried
+origin's live values forward, a harmless improvement, not a reversion.
 
 ### Files
 
@@ -77,7 +91,9 @@ a multi-tenant example using the operator's `ResourceSet` API.
 - `clusters/kind/flux-system/kustomizations.yaml` — new file holding the
   `base`, `config`, `tenants`, and `app` `Kustomization` objects (moved from
   `bootstrap.yaml`; `app`'s existing home at `clusters/kind/apps.yaml` is
-  removed since it's now declared here instead — same spec). Each of these
+  removed since it's now declared here instead — same spec), plus a 5th
+  `notifications` `Kustomization` ported forward from a `bootstrap.yaml`
+  addition on `origin/main` during the merge (see below). Each of these
   platform `Kustomization`s sets `spec.serviceAccountName: kustomize-controller`
   explicitly. This is required, not optional, once `cluster.multitenant: true`
   is set: the lockdown profile adds `--default-service-account=<tenantDefaultServiceAccount>`
@@ -170,24 +186,45 @@ another, for a larger and more invasive diff.)
 Each tenant, by contrast, is fully self-contained in its own namespace: its
 own `GitRepository`, `Secret`, and `Kustomization`, reconciled under its own
 scoped `flux` `ServiceAccount` (set explicitly, correctly, from the start) —
-it has no path to reference `flux-system`'s source or secrets, or another
-tenant's.
+it has no cross-namespace *reference* to `flux-system`'s source or secrets,
+or another tenant's.
+
+This isolation is incomplete in one respect: the tenant's `Secret` is a
+*copy* of the platform's `flux-git-repo` credential (via `copyFrom`), not a
+tenant-specific one, and the tenant's `edit`-scoped `ServiceAccount` can
+read Secrets in its own namespace — so a tenant can read the platform's git
+credential. A real deployment should give each tenant its own
+fine-grained token or deploy key instead of copying the platform's. This
+demo copies the platform credential for simplicity, and that trade-off is
+called out directly in `clusters/kind/tenants/resourceset.yaml`.
 
 ## Testing
 
-`kind`, `helm`, `kubectl`, and `helmfile` are available locally and no Kind
-cluster is currently running under the `flux` cluster name this repo's
-taskfile uses. Plan: commit these changes, push to `main` (this is a
-personal learning repo — confirmed with the user), then run
-`task build` (`build_cluster` + `install_flux`) against a real Kind cluster
-and verify:
+Validated end-to-end on a real Kind cluster (`kind`, `helm`, `kubectl`,
+`helmfile` all available locally). This took 5 attempts, 3 of which found
+real bugs that got fixed and re-validated live before merging:
 
-- `flux-operator` deployment comes up in `flux-system`
-- `FluxInstance` reports `Ready`
-- `base`, `config`, `app` `Kustomization`s reconcile successfully
-- the `ResourceSet` expands into `team-a`/`team-b` namespaces, each with its
-  `ConfigMap` applied
-- a tenant `Kustomization` cannot reach outside its namespace (spot-check
-  the lockdown is actually enforced, not just configured)
-
-Tear down with `task delete_cluster` after validation.
+- Attempt 1: found `origin/main` had diverged (9 unrelated commits never
+  fetched locally) — stopped before pushing rather than risk data loss;
+  resolved by merging origin in first.
+- Attempt 2: pushed successfully, found the 5 platform `Kustomization`s
+  failing under `cluster.multitenant: true` lockdown for lacking
+  `serviceAccountName` — fixed by setting it to `kustomize-controller` on
+  all 5.
+- Attempt 3: pushed, found the 4 platform `HelmRelease`s had the same gap —
+  fixed by setting `serviceAccountName: helm-controller` on all 4.
+- Attempt 4: pushed, found that field alone wasn't enough — Flux requires
+  the named `ServiceAccount` to exist in the HelmRelease's own namespace,
+  and it didn't. Fixed by adding a real `helm-controller` `ServiceAccount` +
+  `cluster-admin` `ClusterRoleBinding` in each of `kuma-system`/`policy`/
+  `observability` (this specific privilege grant was discussed with and
+  confirmed by the user before merging).
+- Attempt 5: pushed, all checks passed — `flux-operator` deployment
+  `Available`, `FluxInstance` `Ready`, all 5 top-level `Kustomization`s
+  `Ready` (allowing a few minutes for Kuma/Kyverno's Helm installs to
+  settle), the `ResourceSet` expanded into `team-a`/`team-b` with their
+  `ConfigMap`s applied and each tenant's `Kustomization` isolated to its
+  own `GitRepository` (not `flux-system`'s), and
+  `--no-cross-namespace-refs=true` confirmed present on the live
+  `kustomize-controller` container. Cluster torn down with
+  `task delete_cluster` after validation.

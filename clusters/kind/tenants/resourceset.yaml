@@ -32,6 +32,11 @@ spec:
         - kind: ServiceAccount
           name: flux
           namespace: << inputs.tenant >>
+    # CAVEAT: this copies the platform's full-scope git credential into
+    # every tenant namespace. The tenant's `edit`-scoped ServiceAccount can
+    # read Secrets in its own namespace, so a tenant can read this
+    # credential. A production setup should use per-tenant deploy keys or
+    # fine-grained tokens instead of copying the platform's own credential.
     - apiVersion: v1
       kind: Secret
       type: Opaque
