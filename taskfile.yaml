@@ -13,15 +13,16 @@ tasks:
       GITHUB_USERNAME: $(gh api user | jq -r .login)
       GITHUB_TOKEN: $(gh auth token)
     cmds:
-      - helmfile apply
       # Check if secret exists, if not create it
       - |
         if ! kubectl get secret flux-git-repo -n flux-system; then
           echo "Creating secret flux-git-repo"
+          kubectl create namespace flux-system --dry-run=client -o yaml | kubectl apply -f -
           kubectl create secret generic flux-git-repo --from-literal=username={{.GITHUB_USERNAME}} --from-literal=password={{.GITHUB_TOKEN}} -n flux-system
         else
           echo "Secret flux-git-repo already exists"
         fi
+      - helmfile apply
   
   build:
     desc: Build the cluster and install Flux
