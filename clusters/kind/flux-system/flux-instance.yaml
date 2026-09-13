@@ -1,0 +1,25 @@
+apiVersion: fluxcd.controlplane.io/v1
+kind: FluxInstance
+metadata:
+  name: flux
+  namespace: flux-system
+spec:
+  distribution:
+    version: "2.9.x"
+    registry: "ghcr.io/fluxcd"
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+  cluster:
+    type: kubernetes
+    multitenant: true
+    tenantDefaultServiceAccount: flux-tenant
+  sync:
+    kind: GitRepository
+    url: "https://github.com/twallac10/kind-flux"
+    ref: "refs/heads/main"
+    path: "./clusters/kind/flux-system"
+    pullSecret: flux-git-repo
+    interval: 1m
