@@ -1,6 +1,8 @@
 version: '3'
 vars:
   KIND_CLUSTER_NAME: flux
+  CLOUDFLARE_TUNNEL_NAME: kind-flux-api
+  CLOUDFLARE_HOSTNAME: kind.t-wallace.com
 tasks:
   build_cluster:
     desc: Build the Kind cluster
@@ -36,6 +38,63 @@ tasks:
     cmds:
       - task: build_cluster
       - task: install_flux
+
+  cloudflared_tunnel_create:
+    desc: One-time - create the Cloudflare Tunnel and its DNS route (requires prior `cloudflared tunnel login`)
+    cmds:
+      - |
+        if ! cloudflared tunnel list -o json | jq -e '.[] | select(.name=="{{.CLOUDFLARE_TUNNEL_NAME}}")' > /dev/null; then
+          echo "Creating tunnel {{.CLOUDFLARE_TUNNEL_NAME}}"
+          cloudflared tunnel create {{.CLOUDFLARE_TUNNEL_NAME}}
+          cloudflared tunnel route dns {{.CLOUDFLARE_TUNNEL_NAME}} {{.CLOUDFLARE_HOSTNAME}}
+        else
+          echo "Tunnel {{.CLOUDFLARE_TUNNEL_NAME}} already exists"
+        fi
+
+  cloudflared_secret:
+    desc: Create the in-cluster tunnel-credentials Secret and stamp the tunnel ID into configmap.yaml
+    vars:
+      TUNNEL_ID:
+        sh: cloudflared tunnel list -o json | jq -r '.[] | select(.name=="{{.CLOUDFLARE_TUNNEL_NAME}}") | .id'
+    cmds:
+      - kubectl create namespace cloudflared --dry-run=client -o yaml | kubectl apply -f -
+      - |
+        if ! kubectl get secret tunnel-credentials -n cloudflared > /dev/null 2>&1; then
+          kubectl create secret generic tunnel-credentials -n cloudflared \
+            --from-file=credentials.json="${HOME}/.cloudflared/{{.TUNNEL_ID}}.json"
+        else
+          echo "Secret tunnel-credentials already exists"
+        fi
+      - "sed -i '' 's/tunnel: REPLACE_WITH_TUNNEL_ID/tunnel: {{.TUNNEL_ID}}/' clusters/kind/cloudflared/configmap.yaml"
+      - echo "Tunnel ID stamped into clusters/kind/cloudflared/configmap.yaml - review and git commit"
+
+  cloudflared_kubeconfig:
+    desc: Create/refresh the kind-flux-cloudflare kubectl context, pointed at the local cloudflared access tcp proxy
+    vars:
+      LOCAL_PROXY_PORT: 6443
+    cmds:
+      - |
+        CA_FILE=$(mktemp)
+        kubectl config view --raw -o jsonpath='{.clusters[?(@.name=="kind-flux")].cluster.certificate-authority-data}' | base64 -d > "$CA_FILE"
+        kubectl config set-cluster kind-flux-cloudflare \
+          --server=https://127.0.0.1:{{.LOCAL_PROXY_PORT}} \
+          --certificate-authority="$CA_FILE" \
+          --embed-certs=true
+        kubectl config set-context kind-flux-cloudflare \
+          --cluster=kind-flux-cloudflare \
+          --user=kind-flux
+        rm -f "$CA_FILE"
+        echo ""
+        echo "Context 'kind-flux-cloudflare' is ready. To use it:"
+        echo "  1) cloudflared access tcp --hostname {{.CLOUDFLARE_HOSTNAME}} --url 127.0.0.1:{{.LOCAL_PROXY_PORT}}   (leave running)"
+        echo "  2) kubectl config use-context kind-flux-cloudflare"
+
+  cloudflared:
+    desc: Set up the Cloudflare Tunnel connector and the kubeconfig to use it (run after `cloudflared tunnel login`)
+    cmds:
+      - task: cloudflared_tunnel_create
+      - task: cloudflared_secret
+      - task: cloudflared_kubeconfig
 
   delete_cluster:
     desc: Delete the Kind cluster
