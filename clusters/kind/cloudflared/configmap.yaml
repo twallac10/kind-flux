@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-config
+  namespace: cloudflared
+data:
+  config.yaml: |
+    tunnel: b1d981e0-188e-457d-91bd-77954f583148
+    credentials-file: /etc/cloudflared/creds/credentials.json
+    metrics: 0.0.0.0:2000
+    no-autoupdate: true
+    ingress:
+      # Raw TCP passthrough to the in-cluster API server service. cloudflared
+      # never terminates TLS here, so kubectl's existing client-certificate
+      # handshake reaches kube-apiserver untouched end to end.
+      - hostname: kind.t-wallace.com
+        service: tcp://kubernetes.default.svc:443
+      - service: http_status:404
